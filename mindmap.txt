@@ -1,0 +1,48 @@
+Sample React Native
+	features
+		Home
+			Hot posts
+				View detail
+		Search
+			Results
+				View Detail
+			Recent Search
+		Saved
+			Lists
+				View Detail
+		Submit a problem
+			Form
+		View User
+			Posts
+		Tagging user
+		Open In Browser
+		FollowedUsers
+	Components
+		Card
+		PrimaryButton
+		DefaultButton
+		IconButton
+		Count
+		LargeText
+		DefaultText
+		MutedText
+		SmallText
+		MutedSmallText
+		BoldText
+		LinkText
+		TabBar
+		TabBarButton
+		CardList
+		SnackBar
+		Notification
+		TextBox
+	Core
+		AppTabBar
+		AppSearchBar
+	Screens
+		Home
+		Saved
+		Followed
+		Search
+		Profile
+		Detail
