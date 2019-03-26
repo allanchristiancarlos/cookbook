@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StatusBar } from 'react-native';
-import TabBar from '../Components/TabBar';
-import TabBarButton from '../Components/TabBarButton';
+import TabBar from '../components/TabBar';
+import TabBarButton from '../components/TabBarButton';
 import TopBar from './TopBar';
 
 export class Layout extends React.Component {

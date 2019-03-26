@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "Sample App",
-    "slug": "SampleApp",
-    "privacy": "public",
+    "name": "Cookbook",
+    "slug": "CookbookApp",
+    "privacy": "unlisted",
     "sdkVersion": "32.0.0",
     "platforms": [
       "ios",
@@ -10,9 +10,9 @@
     ],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./apps/mobile-app/assets/icon.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./apps/mobile-app/assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },

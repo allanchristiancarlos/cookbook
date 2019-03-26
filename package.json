@@ -1,13 +1,14 @@
 {
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "start": "npm run start:api:prod",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "eject": "expo eject",
-    "start:api": "json-server --watch server/db.json",
-    "start:api:prod": "node ./server/server.js",
-    "scrape": "node server/scraper.js"
+    "start": "concurrently 'npm run start:mobile-app' 'npm run start:backend'",
+    "start:web-app": "",
+    "start:mobile-app": "expo start",
+    "start:mobile-app:ios": "expo start --ios",
+    "start:mobile-app:android": "expo start --android",
+    "start:backend": "json-server --watch apps/backend/src/db.json",
+    "start:backend:prod": "node apps/backend/src/server.js",
+    "start:backend:scrape": "node apps/backend/src/scraper.js"
   },
   "dependencies": {
     "expo": "^32.0.0",
@@ -22,6 +23,7 @@
   "devDependencies": {
     "babel-preset-expo": "^5.0.0",
     "cheerio": "^1.0.0-rc.2",
+    "concurrently": "^4.1.0",
     "fs": "0.0.1-security",
     "path": "^0.12.7",
     "q": "^1.5.1",
