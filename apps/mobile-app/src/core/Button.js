@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 
 const { colors } = theme;
 
-const BaseButton = ({ children, icon, color, background, block }) => {
+const BaseButton = ({ children, icon, color, background, block, look }) => {
   let buttonTextStyles = {
     color: color || colors.textColor
   };
@@ -16,9 +16,16 @@ const BaseButton = ({ children, icon, color, background, block }) => {
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 12,
-    borderRadius: 0,
-    backgroundColor: background || colors.secondary
+    borderRadius: 0
   };
+
+  const isBare = look === 'bare';
+
+  if (isBare === true) {
+    buttonTextStyles.color = background || colors.textColor;
+  } else {
+    buttonStyles.backgroundColor = background || colors.secondary;
+  }
 
   let buttonTextWrapperStyles = {
     flexDirection: 'row',
@@ -57,45 +64,62 @@ BaseButton.propTypes = {
   icon: PropTypes.string,
   background: PropTypes.string,
   color: PropTypes.string,
+  block: PropTypes.bool,
+  look: PropTypes.oneOf(['flat', 'bare'])
+};
+
+export const Button = (props) => {
+  const { color, children, kind, ...lessProps } = props;
+  const kinds = {
+    primary: {
+      background: colors.primary,
+      textColor: colors.white
+    },
+    default: {
+      background: lessProps.look === 'bare' ? colors.textColor : colors.secondary,
+      textColor: colors.textColor
+    },
+    danger: {
+      background: colors.danger,
+      textColor: colors.white
+    },
+    success: {
+      background: colors.success,
+      textColor: colors.white
+    },
+    warning: {
+      background: colors.warning,
+      textColor: colors.white
+    }
+  };
+  const kindColors = kinds[kind] || kinds['default'];
+
+  return (
+    <BaseButton
+      background={kindColors.background}
+      color={kindColors.textColor}
+      {...lessProps}
+    >
+      {children}
+    </BaseButton>
+  );
+}
+
+Button.propTypes = {
+  kind: PropTypes.oneOf(['primary', 'default', 'danger', 'warning', 'success']),
+  icon: PropTypes.string,
   block: PropTypes.bool
-};
-
-export const DefaultButton = props => {
-  const { background, color, children, ...lessProps } = props;
-  return (
-    <BaseButton background={colors.secondary} color={colors.textColor} {...lessProps}>
-      {children}
-    </BaseButton>
-  );
-};
-
-export const PrimaryButton = props => {
-  const { background, children, color, ...lessProps } = props;
-  return (
-    <BaseButton background={colors.primary} color={colors.white} {...lessProps}>
-      {children}
-    </BaseButton>
-  );
-};
-
-export const BareButton = props => {
-  const { background, children, ...lessProps } = props;
-  return (
-    <BaseButton background="none" {...lessProps}>
-      {children}
-    </BaseButton>
-  );
-};
+}
 
 export const ButtonSamples = () => {
   return (
     <React.Fragment>
-      <DefaultButton>DefaultButton</DefaultButton>
-      <PrimaryButton>PrimaryButton</PrimaryButton>
-      <BareButton>BareButton</BareButton>
-      <PrimaryButton block>Block PrimaryButton</PrimaryButton>
-      <DefaultButton icon="md-checkmark-circle" />
-      <BareButton icon="md-checkmark-circle" color={colors.primary} />
+      <Button>Default</Button>
+      <Button kind="primary">Primary</Button>
+      <Button kind="danger">Danger</Button>
+      <Button kind="success">Success</Button>
+      <Button kind="warning">Warning</Button>
+      <Button look="bare">Bare</Button>
     </React.Fragment>
   );
 };
