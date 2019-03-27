@@ -1,18 +1,47 @@
 import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
-import { Text, View, TouchableOpacity } from 'react-native';
+import { Text, View, TouchableOpacity, TouchableHighlight } from 'react-native';
 import { theme } from './Theme';
 import PropTypes from 'prop-types';
 
-const { colors } = theme;
+const { colors, fontSizes } = theme;
 
-const BaseButton = ({ children, icon, color, background, block, look }) => {
+const BaseButton = props => {
+  const {
+    children,
+    icon,
+    color,
+    background,
+    block,
+    look,
+    size = 'default',
+    onClick
+  } = props;
+
+  const sizes = {
+    small: {
+      height: 32,
+      fontSize: fontSizes.small
+    },
+    default: {
+      height: 38,
+      fontSize: fontSizes.default
+    },
+    large: {
+      height: 46,
+      fontSize: fontSizes.large
+    }
+  };
+
+  const selectedSize = sizes[size];
+
   let buttonTextStyles = {
-    color: color || colors.textColor
+    color: color || colors.textColor,
+    fontSize: selectedSize.fontSize
   };
 
   let buttonStyles = {
-    height: 42,
+    height: selectedSize.height,
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 12,
@@ -39,8 +68,16 @@ const BaseButton = ({ children, icon, color, background, block, look }) => {
     flexWrap: 'wrap'
   };
 
+  const click = () => {
+    if (onClick) {
+      onClick();
+    }
+  }
+
   let iconStyles = buttonTextStyles;
-  let iconWrapperStyles = { marginRight: children ? 5 : 0 };
+  let iconWrapperStyles = {
+    marginRight: children ? 5 : 0
+  };
 
   let iconButton = icon ? (
     <View style={iconWrapperStyles}>
@@ -50,12 +87,17 @@ const BaseButton = ({ children, icon, color, background, block, look }) => {
 
   return (
     <View style={buttonWrapperStyles}>
-      <TouchableOpacity style={buttonStyles}>
+      <TouchableHighlight
+        underlayColor={colors.lightGray}
+        activeOpacity={0.9}
+        onPress={click}
+        style={buttonStyles}
+      >
         <View style={buttonTextWrapperStyles}>
           {iconButton}
           <Text style={buttonTextStyles}>{children}</Text>
         </View>
-      </TouchableOpacity>
+      </TouchableHighlight>
     </View>
   );
 };
@@ -65,10 +107,12 @@ BaseButton.propTypes = {
   background: PropTypes.string,
   color: PropTypes.string,
   block: PropTypes.bool,
-  look: PropTypes.oneOf(['flat', 'bare'])
+  look: PropTypes.oneOf(['flat', 'bare']),
+  size: PropTypes.oneOf(['small', 'default', 'large']),
+  onClick: PropTypes.func
 };
 
-export const Button = (props) => {
+export const Button = props => {
   const { color, children, kind, ...lessProps } = props;
   const kinds = {
     primary: {
@@ -76,7 +120,8 @@ export const Button = (props) => {
       textColor: colors.white
     },
     default: {
-      background: lessProps.look === 'bare' ? colors.textColor : colors.secondary,
+      background:
+        lessProps.look === 'bare' ? colors.textColor : colors.secondary,
       textColor: colors.textColor
     },
     danger: {
@@ -103,13 +148,15 @@ export const Button = (props) => {
       {children}
     </BaseButton>
   );
-}
+};
 
 Button.propTypes = {
   kind: PropTypes.oneOf(['primary', 'default', 'danger', 'warning', 'success']),
   icon: PropTypes.string,
-  block: PropTypes.bool
-}
+  block: PropTypes.bool,
+  size: PropTypes.oneOf(['small', 'default', 'large']),
+  onClick: PropTypes.func
+};
 
 export const ButtonSamples = () => {
   return (
@@ -120,6 +167,8 @@ export const ButtonSamples = () => {
       <Button kind="success">Success</Button>
       <Button kind="warning">Warning</Button>
       <Button look="bare">Bare</Button>
+      <Button size="small">Small</Button>
+      <Button size="large">Large</Button>
     </React.Fragment>
   );
 };

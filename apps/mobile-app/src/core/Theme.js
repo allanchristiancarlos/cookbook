@@ -16,6 +16,7 @@ export const theme = {
            white: '#ffffff',
            lightGray: '#EFEAE5',
            textLight: '#848d95',
-           disabled: '#DBDBDB'
+           disabled: '#DBDBDB',
+           muted: '#6c757d'
          }
        };
