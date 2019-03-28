@@ -10,7 +10,7 @@ export class RecipesList extends Component {
   };
 
   componentDidMount() {
-    Http.get('http://192.168.1.30:3000/recipes?_page=1&_limit=50').then(x => {
+    Http.get('recipes?_page=1&_limit=50').then(x => {
       this.setState(state => ({
         ...state,
         data: x
@@ -24,7 +24,7 @@ export class RecipesList extends Component {
     return (
       <Layout>
         <ScrollView>
-          {data.map((x) => (
+          {data.map(x => (
             <RecipeCard key={x.id} data={x} />
           ))}
         </ScrollView>
