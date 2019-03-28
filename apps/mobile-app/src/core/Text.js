@@ -1,9 +1,9 @@
 import React from 'react';
 import { Text as NativeText, View } from 'react-native';
-import { theme } from './Theme';
+import { Theme } from './Theme';
 import PropTypes from 'prop-types';
 
-const { fontSizes, colors } = theme;
+const { fontSizes, colors } = Theme;
 
 export const Text = props => {
   const {

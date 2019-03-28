@@ -6,7 +6,7 @@
     "start:mobile-app": "expo start",
     "start:mobile-app:ios": "expo start --ios",
     "start:mobile-app:android": "expo start --android",
-    "start:backend": "json-server --watch apps/backend/src/db.json",
+    "start:backend": "json-server --host 0.0.0.0 --watch apps/backend/src/db.json",
     "start:backend:prod": "node apps/backend/src/server.js",
     "start:backend:scrape": "node apps/backend/src/scraper.js"
   },

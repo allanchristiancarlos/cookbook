@@ -1,0 +1,22 @@
+export class Http {
+  static get(url, options) {
+    options = {
+      ...options,
+      method: 'GET'
+    };
+    return Http.fetch(url, options);
+  }
+
+  static post(url, data, options) {
+    options = {
+      ...options,
+      method: 'POST',
+      body: JSON.stringify(data)
+    }
+    return Http.fetch(url, options);
+  }
+
+  static fetch(url, options) {
+    return fetch(url, options).then(x => x.json());
+  }
+}

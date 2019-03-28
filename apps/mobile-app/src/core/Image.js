@@ -1,12 +1,16 @@
 import React from 'react';
 import { Image as NativeImage } from 'react-native';
 import PropTypes from 'prop-types';
+import { Theme } from './Theme';
+
+const { colors } = Theme;
 
 export const Image = props => {
   let { size = 'thumbnail', url, width, height, rounded = false } = props;
   let styles = {
     width,
-    height
+    height,
+    backgroundColor: colors.lightGray
   };
 
   if (!width && !height && size) {

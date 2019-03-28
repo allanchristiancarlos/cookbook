@@ -1,8 +1,7 @@
 import React from 'react';
 import { View, StatusBar } from 'react-native';
-import TabBar from '../components/TabBar';
-import TabBarButton from '../components/TabBarButton';
-import TopBar from './TopBar';
+import TabBar from './TabBar';
+import TabBarButton from './TabBarButton';
 
 export class Layout extends React.Component {
   render() {
@@ -33,7 +32,6 @@ export class Layout extends React.Component {
         <StatusBar barStyle="dark-content" />
         <View style={{ flex: 1 }}>
           <View style={{ marginTop: StatusBar.currentHeight }}>
-            <TopBar />
           </View>
           <View style={{ flex: 1, backgroundColor: '#fafafa' }}>
             {children}

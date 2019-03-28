@@ -1,10 +1,10 @@
 import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { Text, View, TouchableOpacity, TouchableHighlight } from 'react-native';
-import { theme } from './Theme';
+import { Theme } from './Theme';
 import PropTypes from 'prop-types';
 
-const { colors, fontSizes } = theme;
+const { colors, fontSizes } = Theme;
 
 const BaseButton = props => {
   const {
@@ -15,7 +15,7 @@ const BaseButton = props => {
     block,
     look,
     size = 'default',
-    onClick
+    onPress 
   } = props;
 
   const sizes = {
@@ -68,9 +68,9 @@ const BaseButton = props => {
     flexWrap: 'wrap'
   };
 
-  const click = () => {
-    if (onClick) {
-      onClick();
+  const onPressHandler = () => {
+    if (onPress) {
+      onPress();
     }
   }
 
@@ -90,7 +90,7 @@ const BaseButton = props => {
       <TouchableHighlight
         underlayColor={colors.lightGray}
         activeOpacity={0.9}
-        onPress={click}
+        onPress={onPressHandler}
         style={buttonStyles}
       >
         <View style={buttonTextWrapperStyles}>
