@@ -1,6 +1,6 @@
 import React from 'react';
-import { Chip } from '../../components/Chip';
-import { Theme } from '../../core';
+import { Chip } from '../../../Components/Chip';
+import { Theme } from '../../../Core';
 
 const { colors } = Theme;
 

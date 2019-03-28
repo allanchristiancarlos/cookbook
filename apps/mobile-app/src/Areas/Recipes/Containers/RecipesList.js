@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { ScrollView } from 'react-native';
-import { Http } from '../../core';
-import { Layout } from '../../components/Layout';
-import { CategoryCard } from './CategoryCard';
+import { Http } from '../../../Core';
+import { Layout } from '../../../Components/Layout';
+import { RecipeCard } from '../Components/RecipeCard';
 
-export class CategoriesList extends Component {
+export class RecipesList extends Component {
   state = {
     data: []
   };
 
   componentDidMount() {
-    Http.get('categories?_page=1&_limit=50&_sort=name').then(x => {
+    Http.get('recipes?_page=1&_limit=50').then(x => {
       this.setState(state => ({
         ...state,
         data: x
@@ -25,7 +25,7 @@ export class CategoriesList extends Component {
       <Layout>
         <ScrollView>
           {data.map(x => (
-            <CategoryCard key={x.id} data={x} />
+            <RecipeCard key={x.id} data={x} />
           ))}
         </ScrollView>
       </Layout>

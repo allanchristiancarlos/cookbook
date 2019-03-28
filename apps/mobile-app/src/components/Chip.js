@@ -1,6 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
-import { Theme, Text } from '../core';
+import { Theme, Text } from '../Core';
 
 const { colors } = Theme;
 

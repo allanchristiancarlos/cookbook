@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import { Text, Image, Button } from '../core';
+import { Text, Image, Button } from '../Core';
 
 export class ContentHeader extends Component {
   render() {

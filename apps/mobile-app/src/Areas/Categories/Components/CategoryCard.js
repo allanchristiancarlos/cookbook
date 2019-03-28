@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { TouchableHighlight, View, Dimensions } from 'react-native';
-import { Image, Text, Theme } from '../../core';
+import { Image, Text, Theme } from '../../../Core';
 
 const { colors } = Theme;
 
