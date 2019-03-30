@@ -6,6 +6,8 @@ import { Section } from '../../../Components/Section';
 import { List, ListItem } from '../../../Components/List';
 import { RecipeDetailHeader } from '../Components/RecipeDetailHeader';
 import { Text, Theme, Http } from '../../../Core';
+import { normalizeRecipe } from '../Utils';
+
 
 const { colors } = Theme;
 
@@ -23,7 +25,7 @@ export class RecipeDetail extends Component {
   }
 
   render() {
-    const data = this.state.data || {};
+    const data = normalizeRecipe(this.state.data || {});
     const { ingredients, steps, relatedCategories, occasions } = data;
     return (
       <Layout>
