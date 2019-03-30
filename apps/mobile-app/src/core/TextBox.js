@@ -1,9 +1,9 @@
 import React from 'react';
 import { TextInput, View } from 'react-native';
-import { theme } from './Theme';
-import { FormLabelText } from './Text';
+import { Theme } from './Theme';
+import { Text } from './Text';
 
-const { colors } = theme;
+const { colors } = Theme;
 
 export const TextBox = ({ defaultValue, disabled, placeholder }) => {
   const containerStyles = {
@@ -45,9 +45,10 @@ export const TextBoxSamples = () => {
         <TextBox defaultValue="Disabled" disabled />
       </View>
       <View style={{ marginBottom: 10 }}>
-        <FormLabelText label="Label">
-          <TextBox defaultValue="Value" />
-        </FormLabelText>
+        <Text size="small" bold letterCase="upper">
+          Field Label
+        </Text>
+        <TextBox defaultValue="Value" />
       </View>
     </View>
   );

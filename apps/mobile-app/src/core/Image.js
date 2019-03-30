@@ -6,8 +6,8 @@ import { Theme } from './Theme';
 const { colors } = Theme;
 
 export const Image = props => {
-  let { size = 'thumbnail', url, width, height, rounded = false } = props;
-  let styles = {
+  let { size = 'thumbnail', url, width, height, rounded = false, style } = props;
+  let imageStyles = {
     width,
     height,
     backgroundColor: colors.lightGray
@@ -16,14 +16,22 @@ export const Image = props => {
   if (!width && !height && size) {
     switch (size) {
       default: {
-        styles.width = 64;
-        styles.height = 64;
+        imageStyles.width = 64;
+        imageStyles.height = 64;
         break;
       }
     }
   }
 
-  return <NativeImage style={styles} source={{ uri: url }} />;
+  if (rounded) {
+    imageStyles.borderRadius = (imageStyles.height + imageStyles.width) / 2;
+  }
+
+  imageStyles = {
+    ...imageStyles,
+    ...style
+  };
+  return <NativeImage style={imageStyles} source={{ uri: url }} />;
 };
 
 Image.propTypes = {

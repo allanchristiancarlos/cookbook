@@ -13,7 +13,8 @@ export const Text = props => {
     size = 'default',
     letterCase,
     color,
-    muted = false
+    muted = false,
+    centered
   } = props;
 
   const sizes = {
@@ -27,11 +28,17 @@ export const Text = props => {
     fontSize: sizes[size] || fontSizes.default,
     fontWeight: bold ? 'bold' : 'normal',
     fontStyle: italic ? 'italic' : 'normal',
-    color: color || colors.textColor
+    color: color || colors.textColor,
+    paddingBottom: 0,
+    marginBottom: 0,
   };
 
   if (muted) {
     style.color = colors.muted;
+  }
+
+  if (centered) {
+    style.textAlign = 'center';
   }
 
   const casing = letterCase || 'none';
@@ -54,7 +61,8 @@ Text.propTypes = {
   bold: PropTypes.bool,
   letterCase: PropTypes.oneOf(['upper', 'lower']),
   color: PropTypes.string,
-  muted: PropTypes.bool
+  muted: PropTypes.bool,
+  centered: PropTypes.bool,
 };
 
 export const TextSamples = () => {
