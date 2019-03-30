@@ -24,7 +24,7 @@ export class RecipeDetail extends Component {
 
   render() {
     const data = this.state.data || {};
-    const { ingredients, steps, relatedCategories } = data;
+    const { ingredients, steps, relatedCategories, occasions } = data;
     return (
       <Layout>
         <ScrollView>
@@ -51,6 +51,20 @@ export class RecipeDetail extends Component {
             <Section title="Categories">
               <View style={{ flex: 1, flexWrap: 'wrap', flexDirection: 'row' }}>
                 {(relatedCategories || []).map((x, index) => (
+                  <View key={index} style={{ marginRight: 6, marginBottom: 6 }}>
+                    <Chip
+                      color={colors.primary}
+                      backgroundColor={colors.secondary}
+                    >
+                      {x}
+                    </Chip>
+                  </View>
+                ))}
+              </View>
+            </Section>
+            <Section title="Occasions">
+              <View style={{ flex: 1, flexWrap: 'wrap', flexDirection: 'row' }}>
+                {(occasions || []).map((x, index) => (
                   <View key={index} style={{ marginRight: 6, marginBottom: 6 }}>
                     <Chip
                       color={colors.primary}
