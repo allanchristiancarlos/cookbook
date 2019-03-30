@@ -7,7 +7,7 @@ const { colors } = Theme;
 export const RecipeTagChip = props => {
   const { children } = props;
   return (
-    <Chip background={colors.secondary} color={colors.textColor}>
+    <Chip size="small" background={colors.secondary} color={colors.textColor}>
       #{children}
     </Chip>
   );
