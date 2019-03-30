@@ -3,6 +3,7 @@ import { ScrollView } from 'react-native';
 import { Http } from '../../../Core';
 import { Layout } from '../../../Components/Layout';
 import { RecipeCard } from '../Components/RecipeCard';
+import { normalizeRecipe } from '../Utils';
 
 export class RecipesList extends Component {
   state = {
@@ -10,10 +11,10 @@ export class RecipesList extends Component {
   };
 
   componentDidMount() {
-    Http.get('recipes?_page=1&_limit=50').then(x => {
+    Http.get('recipes?_page=1&_limit=20').then(x => {
       this.setState(state => ({
         ...state,
-        data: x
+        data: x.map(t => normalizeRecipe(t))
       }));
     });
   }
@@ -22,13 +23,11 @@ export class RecipesList extends Component {
     const { data } = this.state;
 
     return (
-      <Layout>
-        <ScrollView>
-          {data.map(x => (
-            <RecipeCard key={x.id} data={x} />
-          ))}
-        </ScrollView>
-      </Layout>
+      <ScrollView>
+        {data.map(x => (
+          <RecipeCard key={x.id} data={x} />
+        ))}
+      </ScrollView>
     );
   }
 }

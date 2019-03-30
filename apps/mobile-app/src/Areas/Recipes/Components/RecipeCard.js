@@ -23,7 +23,7 @@ export class RecipeCard extends Component {
       }
 
       return (
-        <View style={{ marginRight: 2 }}>
+        <View style={{ marginRight: 4 }}>
           <RecipeRatingChip rating={rating} />
         </View>
       );
@@ -35,7 +35,7 @@ export class RecipeCard extends Component {
       }
 
       return relatedCategories.slice(0, 3).map((category, index) => (
-        <View key={index} style={{ marginRight: 2 }}>
+        <View key={index} style={{ marginRight: 4 }}>
           <RecipeTagChip>{category}</RecipeTagChip>
         </View>
       ));
@@ -43,7 +43,7 @@ export class RecipeCard extends Component {
     return (
       <TouchableHighlight
         onPress={onPressHandler}
-        underlayColor={colors.lightGray}
+        underlayColor={colors.secondary}
         activeOpacity={0.9}
       >
         <View style={{ marginBottom: 30 }}>
