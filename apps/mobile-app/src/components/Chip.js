@@ -1,11 +1,11 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, TouchableHighlight } from 'react-native';
 import { Theme, Text } from '../Core';
 
 const { colors } = Theme;
 
 export const Chip = props => {
-  const { children, kind = 'secondary', onPress, background, color } = props;
+  const { children, kind = 'secondary', onPress, background, color, size = 'default' } = props;
   const kinds = {
     primary: {
       backgroundColor: colors.primary,
@@ -32,7 +32,7 @@ export const Chip = props => {
   let { backgroundColor, textColor } = kinds[kind];
   backgroundColor = background || backgroundColor;
   textColor = color || textColor;
-  
+
   const onPressHandler = () => {
     if (onPress) {
       onPress();
@@ -41,18 +41,21 @@ export const Chip = props => {
 
   return (
     <View style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
-      <View
+      <TouchableHighlight
+        onPress={onPressHandler}
+        underlayColor={colors.lightGray}
+        activeOpacity={0.9}
         style={{
           backgroundColor,
           paddingVertical: 2,
           paddingHorizontal: 8,
-          borderRadius: 10
+          borderRadius: 3
         }}
       >
-        <Text size="small" color={textColor}>
+        <Text size={size} color={textColor}>
           {children}
         </Text>
-      </View>
+      </TouchableHighlight>
     </View>
   );
 };
