@@ -19,19 +19,22 @@ export class CategoryCard extends Component {
 
     return (
       <TouchableHighlight
-        style={{ paddingVertical: 10 }}
         onPress={this.onPressHandler}
-        underlayColor={colors.lightGray}
+        underlayColor={colors.secondary}
         activeOpacity={0.9}
       >
-        <View style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
-          <View style={{ marginRight: 10 }}>
+        <View
+          style={{ flex: 1, flexDirection: 'row', alignItems: 'flex-start' }}
+        >
+          <View style={{ width: 120, marginRight: 10 }}>
             <Image width={120} height={100} url={imageUrl} />
           </View>
-          <View>
+          <View style={{ flex: 1 }}>
             <View>
               <View style={{ marginBottom: 6 }}>
-                <Text bold>{name}</Text>
+                <Text bold size="large">
+                  {name}
+                </Text>
               </View>
               <Text size="small" muted>
                 {description}

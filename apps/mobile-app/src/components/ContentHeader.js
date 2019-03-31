@@ -125,7 +125,7 @@ export class ContentHeader extends Component {
                 {title}
               </Text>
             </View>
-            {renderDescription()}
+            <View style={{ paddingHorizontal: 20 }}>{renderDescription()}</View>
             {renderChildren()}
           </View>
         </View>
