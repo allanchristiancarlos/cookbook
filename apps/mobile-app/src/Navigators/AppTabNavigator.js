@@ -24,16 +24,24 @@ const AppTabNavigator = createBottomTabNavigator(
       navigationOptions: () => ({
         title: 'Categories',
         tabBarIcon: ({ tintColor }) => (
-          <Ionicons name="md-filing" size={24} style={{ color: tintColor }} />
+          <Ionicons
+            name="md-square-outline"
+            size={24}
+            style={{ color: tintColor }}
+          />
         )
       })
     },
     NewRecipe: {
       screen: NewRecipe,
       navigationOptions: () => ({
-        headerTitle: 'New Recipe',
+        title: 'New Recipe',
         tabBarIcon: ({ tintColor }) => (
-          <Ionicons name="md-add" size={24} style={{ color: tintColor }} />
+          <Ionicons
+            name="md-add-circle-outline"
+            size={24}
+            style={{ color: tintColor }}
+          />
         ),
         tabBarVisible: false
       })
@@ -54,9 +62,13 @@ const AppTabNavigator = createBottomTabNavigator(
     FavoritesTab: {
       screen: RecipesNavigator,
       navigationOptions: () => ({
-        title: 'Favorites',
+        title: 'Settings',
         tabBarIcon: ({ tintColor }) => (
-          <Ionicons name="md-heart" size={24} style={{ color: tintColor }} />
+          <Ionicons
+            name="md-menu"
+            size={24}
+            style={{ color: tintColor }}
+          />
         )
       })
     }
