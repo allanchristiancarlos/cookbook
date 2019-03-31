@@ -13,7 +13,7 @@ export const RecipeTagChip = props => {
       background={colors.secondary}
       color={colors.textColor}
     >
-      #{children}
+      {children}
     </Chip>
   );
 };

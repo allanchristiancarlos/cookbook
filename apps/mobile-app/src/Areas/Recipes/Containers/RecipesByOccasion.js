@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import { Http } from '../../../Core';
-import { normalizeRecipe } from '../Utils';
 import RecipesList from '../Components/RecipesList';
+import { normalizeRecipe } from '../Utils';
 import WithRecipeNavigator from '../Hoc/WithRecipeNavigator';
 
-class RecipesByCategory extends Component {
+class RecipesByOccasion extends Component {
   state = {
     data: []
   };
 
   componentDidMount() {
-    const { category } = this.props.navigation.state.params;
-    Http.get(`recipes?_limit=10&relatedCategories_like=${category}`).then(x => {
+    const { occasion } = this.props.navigation.state.params;
+    Http.get(`recipes?_limit=10&occasions_like=${occasion}`).then(x => {
       this.setState(state => ({
         ...state,
         data: x.map(t => normalizeRecipe(t))
@@ -32,4 +32,4 @@ class RecipesByCategory extends Component {
   }
 }
 
-export default WithRecipeNavigator(RecipesByCategory);
+export default WithRecipeNavigator(RecipesByOccasion);
