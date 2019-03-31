@@ -17,7 +17,7 @@ export class Http {
   }
 
   static fetch(url, options) {
-    return fetch(`http://192.168.43.62:3000/${url}`, options).then(x =>
+    return fetch(`http://192.168.1.30:3000/${url}`, options).then(x =>
       x.json()
     );
   }

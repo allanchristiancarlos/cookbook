@@ -1,15 +1,11 @@
-import React, { Fragment } from 'react';
-import { RecipesList } from './src/Areas/Recipes/Containers/RecipesList';
-import { NewRecipe } from './src/Areas/Recipes/Containers/NewRecipe';
-import { RecipeDetail } from './src/Areas/Recipes/Containers/RecipeDetail';
-import { CategoriesList } from './src/Areas/Categories/Containers/CategoriesList';
+import React from 'react';
+import { createAppContainer } from 'react-navigation';
+import AppNavigator from './src/Navigators/AppNavigator';
+
+const AppContainer = createAppContainer(AppNavigator);
 
 export default class App extends React.Component {
   render() {
-    return (
-      <Fragment>
-        <RecipeDetail />
-      </Fragment>
-    );
+    return <AppContainer />;
   }
 }

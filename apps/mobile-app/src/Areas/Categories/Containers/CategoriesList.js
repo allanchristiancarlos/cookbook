@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { ScrollView } from 'react-native';
 import { Http } from '../../../Core';
-import { Layout } from '../../../Components/Layout';
 import { CategoryCard } from '../Components/CategoryCard';
 
-export class CategoriesList extends Component {
+export default class CategoriesList extends Component {
   state = {
     data: []
   };
@@ -22,13 +21,11 @@ export class CategoriesList extends Component {
     const { data } = this.state;
 
     return (
-      <Layout>
-        <ScrollView>
-          {data.map(x => (
-            <CategoryCard key={x.id} data={x} />
-          ))}
-        </ScrollView>
-      </Layout>
+      <ScrollView>
+        {data.map(x => (
+          <CategoryCard key={x.id} data={x} />
+        ))}
+      </ScrollView>
     );
   }
 }

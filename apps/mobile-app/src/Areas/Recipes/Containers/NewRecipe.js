@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
-import { Layout } from '../../../Components/Layout';
-import { Text, TextBoxSamples } from '../../../Core';
-import { View, ScrollView } from 'react-native';
+import { ScrollView } from 'react-native';
+import { Text } from '../../../Core';
 
-export class NewRecipe extends Component {
+export default class NewRecipe extends Component {
   render() {
     return (
-      <Layout>
-        <ScrollView>
-          <TextBoxSamples />
-          <Text>TEst</Text>
-        </ScrollView>
-      </Layout>
+      <ScrollView>
+        <Text>New Recipe</Text>
+      </ScrollView>
     );
   }
 }

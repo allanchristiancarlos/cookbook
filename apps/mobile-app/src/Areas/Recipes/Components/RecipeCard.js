@@ -8,7 +8,7 @@ const { colors } = Theme;
 
 export class RecipeCard extends Component {
   render() {
-    const { data, onPress } = this.props;
+    const { data, onPress, onCategoryPress } = this.props;
     const { imageUrl, name, rating, relatedCategories } = data || {};
 
     const onPressHandler = () => {
@@ -17,6 +17,11 @@ export class RecipeCard extends Component {
       }
     };
 
+    const onCategoryPressHandler = (category) => {
+      return () => {
+        return onCategoryPress(category);
+      }
+    }
     const renderRating = () => {
       if (!rating) {
         return;
@@ -36,7 +41,7 @@ export class RecipeCard extends Component {
 
       return relatedCategories.slice(0, 3).map((category, index) => (
         <View key={index} style={{ marginRight: 4 }}>
-          <RecipeTagChip>{category}</RecipeTagChip>
+          <RecipeTagChip onPress={onCategoryPressHandler(category)}>{category}</RecipeTagChip>
         </View>
       ));
     };

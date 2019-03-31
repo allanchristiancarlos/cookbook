@@ -2,15 +2,17 @@ import React, { Component } from 'react';
 import { ScrollView } from 'react-native';
 import { Http } from '../../../Core';
 import { RecipeCard } from '../Components/RecipeCard';
-import BaseRecipesListHOC from './BaseRecipesList';
 import { normalizeRecipe } from '../Utils';
+import BaseRecipesListHOC from './BaseRecipesList';
 
-class RecipesList extends Component {
+class RecipesByCategory extends Component {
   state = {
     data: []
   };
+
   componentDidMount() {
-    Http.get('recipes?_page=1&_limit=20').then(x => {
+    const { category } = this.props.navigation.state.params;
+    Http.get(`recipes?_limit=10&relatedCategories_like=${category}`).then(x => {
       this.setState(state => ({
         ...state,
         data: x.map(t => normalizeRecipe(t))
@@ -36,4 +38,4 @@ class RecipesList extends Component {
   }
 }
 
-export default BaseRecipesListHOC(RecipesList);
+export default BaseRecipesListHOC(RecipesByCategory);
