@@ -33,7 +33,6 @@ function WithRecipeNavigator(WrappedComponent) {
     };
 
     render() {
-      // Wraps the input component in a container, without mutating it. Good!
       return (
         <WrappedComponent
           navigateToCategory={this.navigateToCategory}
