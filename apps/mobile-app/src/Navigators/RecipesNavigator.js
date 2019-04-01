@@ -1,14 +1,11 @@
 import React from 'react';
 import { createStackNavigator } from 'react-navigation';
-import { Ionicons } from '@expo/vector-icons';
 import RecipesByCategory from '../Areas/Recipes/Containers/RecipesByCategory';
 import RecipesByOccasion from '../Areas/Recipes/Containers/RecipesByOccasion';
 import Recipes from '../Areas/Recipes/Containers/Recipes';
 import RecipeDetail from '../Areas/Recipes/Containers/RecipeDetail';
-import { Theme } from '../Core';
+import HeaderIconButton from '../Components/HeaderIconButton';
 import { View } from 'react-native';
-
-const { colors } = Theme;
 
 const RecipesNavigator = createStackNavigator({
   RecipesList: {
@@ -26,11 +23,7 @@ const RecipesNavigator = createStackNavigator({
         title: 'Recipe Details',
         headerRight: (
           <View style={{ marginRight: 20 }}>
-            <Ionicons
-              name="md-heart-empty"
-              size={28}
-              color={colors.textColor}
-            />
+            <HeaderIconButton icon="md-heart-empty" />
           </View>
         )
       };
