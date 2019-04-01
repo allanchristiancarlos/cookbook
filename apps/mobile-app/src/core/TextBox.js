@@ -5,23 +5,48 @@ import { Text } from './Text';
 
 const { colors } = Theme;
 
-export const TextBox = ({ defaultValue, disabled, placeholder }) => {
+export const TextBox = ({
+  defaultValue,
+  disabled,
+  placeholder,
+  lines = 1,
+  multiline = false,
+  onChangeText,
+  value
+}) => {
   const containerStyles = {
     borderColor: disabled ? colors.disabled : colors.dark,
     borderWidth: 1,
-    backgroundColor: disabled ? colors.lightGray : null
+    backgroundColor: disabled ? colors.secondary : null
   };
 
   const inputStyles = {
-    height: 36,
     color: disabled ? colors.textLight : colors.textColor,
     paddingHorizontal: 10
+  };
+  if (multiline === false) {
+    inputStyles.height = 36;
+  } else {
+    inputStyles.paddingVertical = 10;
+  }
+
+  const onChangeTextHandler = e => {
+    if (!onChangeText) {
+      return;
+    }
+
+    onChangeText(e);
   };
 
   return (
     <View style={containerStyles}>
       <TextInput
+        value={value}
+        onChangeText={onChangeTextHandler}
+        textAlignVertical={multiline ? 'top' : 'center'}
+        numberOfLines={lines}
         style={inputStyles}
+        multiline={multiline}
         defaultValue={defaultValue}
         placeholder={placeholder}
         editable={!disabled}

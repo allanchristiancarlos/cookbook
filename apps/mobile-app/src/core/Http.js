@@ -11,8 +11,11 @@ export class Http {
     options = {
       ...options,
       method: 'POST',
-      body: JSON.stringify(data)
-    }
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
     return Http.fetch(url, options);
   }
 

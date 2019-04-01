@@ -4,7 +4,9 @@ import { createBottomTabNavigator } from 'react-navigation';
 import NewRecipe from '../Areas/Recipes/Containers/NewRecipe';
 import RecipesNavigator from './RecipesNavigator';
 import CategoriesNavigator from './CategoriesNavigator';
+import NewRecipeNavigator from './NewRecipeNavigator';
 import { Theme } from '../Core';
+import MyRecipesNavigator from './MyRecipesNavigator';
 
 const { colors } = Theme;
 
@@ -33,7 +35,7 @@ const AppTabNavigator = createBottomTabNavigator(
       })
     },
     NewRecipe: {
-      screen: NewRecipe,
+      screen: NewRecipeNavigator,
       navigationOptions: () => ({
         title: 'New Recipe',
         tabBarIcon: ({ tintColor }) => (
@@ -47,7 +49,7 @@ const AppTabNavigator = createBottomTabNavigator(
       })
     },
     MyRecipesTab: {
-      screen: RecipesNavigator,
+      screen: MyRecipesNavigator,
       navigationOptions: () => ({
         title: 'My Recipes',
         tabBarIcon: ({ tintColor }) => (
@@ -64,11 +66,7 @@ const AppTabNavigator = createBottomTabNavigator(
       navigationOptions: () => ({
         title: 'Settings',
         tabBarIcon: ({ tintColor }) => (
-          <Ionicons
-            name="md-menu"
-            size={24}
-            style={{ color: tintColor }}
-          />
+          <Ionicons name="md-menu" size={24} style={{ color: tintColor }} />
         )
       })
     }
@@ -78,7 +76,8 @@ const AppTabNavigator = createBottomTabNavigator(
       activeTintColor: colors.primary,
       inactiveTintColor: colors.muted,
       showIcon: true
-    }
+    },
+    initialRouteName: 'NewRecipe'
   }
 );
 

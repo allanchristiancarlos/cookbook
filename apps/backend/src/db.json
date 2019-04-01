@@ -51740,6 +51740,277 @@
       "imageUrl": "https://myfoodbook.com.au/sites/default/files/styles/recipe_3_col/public/recipe_photo/Mush20162741_0.jpg?itok=TjFcGRKB",
       "link": "https://myfoodbook.com.au/recipes/show/beef-and-mushroom-stroganoff?recipeId=ffac8258-9c60-1719-8b7b-174e515223d5",
       "categoryId": "4d087f49-ef14-8c37-8b5a-10aa2d9af316"
+    },
+    {
+      "imageUrl": "https://myfoodbook.com.au/sites/default/files/styles/recipe_3_col/public/recipe_photo/Brev20155486_0.jpg?itok=1osMdS-X",
+      "categoryId": "1f4f2b16-8985-6d45-5749-bfa1f588727f",
+      "occasions": [
+        "Winter",
+        "Chinese New Year",
+        "Dinner Party",
+        "Autumn"
+      ],
+      "relatedCategories": [
+        "Dinner",
+        "Soups",
+        "Noodles"
+      ],
+      "rating": null,
+      "serving": 4,
+      "prepTimeRaw": null,
+      "prepTime": null,
+      "steps": [
+        "Simmer",
+        "Fry"
+      ],
+      "ingredients": [
+        "Onion",
+        "Rings"
+      ],
+      "name": "Sinigang na Baboy",
+      "cookTime": "20",
+      "difficulty": "Easy",
+      "description": "Test",
+      "cookTimeRaw": "20",
+      "id": "Y-BTQK1"
+    },
+    {
+      "imageUrl": "https://myfoodbook.com.au/sites/default/files/styles/recipe_3_col/public/recipe_photo/Brev20155486_0.jpg?itok=1osMdS-X",
+      "categoryId": "1f4f2b16-8985-6d45-5749-bfa1f588727f",
+      "occasions": [
+        "Winter",
+        "Chinese New Year",
+        "Dinner Party",
+        "Autumn"
+      ],
+      "relatedCategories": [
+        "Dinner",
+        "Soups",
+        "Noodles"
+      ],
+      "rating": null,
+      "serving": 4,
+      "prepTimeRaw": null,
+      "prepTime": null,
+      "steps": [
+        "Simmer",
+        "Fry"
+      ],
+      "ingredients": [
+        "Onion",
+        "Rings"
+      ],
+      "userId": 1,
+      "name": "Sinigang na Baboy",
+      "cookTime": "20",
+      "difficulty": "Easy",
+      "description": "Lorem ipsum",
+      "cookTimeRaw": "20",
+      "id": "gUmirEH"
+    },
+    {
+      "imageUrl": "https://myfoodbook.com.au/sites/default/files/styles/recipe_3_col/public/recipe_photo/Brev20155486_0.jpg?itok=1osMdS-X",
+      "categoryId": "1f4f2b16-8985-6d45-5749-bfa1f588727f",
+      "occasions": [
+        "Winter",
+        "Chinese New Year",
+        "Dinner Party",
+        "Autumn"
+      ],
+      "relatedCategories": [
+        "Dinner",
+        "Soups",
+        "Noodles"
+      ],
+      "rating": null,
+      "serving": 4,
+      "prepTimeRaw": null,
+      "prepTime": null,
+      "steps": [
+        "Simmer",
+        "Fry"
+      ],
+      "ingredients": [
+        "Onion",
+        "Rings"
+      ],
+      "userId": 1,
+      "name": "Sinigang na Baboy",
+      "cookTime": "20",
+      "difficulty": "Easy",
+      "description": "Test",
+      "cookTimeRaw": "20",
+      "id": "BhLM10w"
+    },
+    {
+      "imageUrl": "https://myfoodbook.com.au/sites/default/files/styles/recipe_3_col/public/recipe_photo/Brev20155486_0.jpg?itok=1osMdS-X",
+      "categoryId": "1f4f2b16-8985-6d45-5749-bfa1f588727f",
+      "occasions": [
+        "Winter",
+        "Chinese New Year",
+        "Dinner Party",
+        "Autumn"
+      ],
+      "relatedCategories": [
+        "Dinner",
+        "Soups",
+        "Noodles"
+      ],
+      "rating": null,
+      "serving": 4,
+      "prepTimeRaw": null,
+      "prepTime": null,
+      "steps": [
+        "Simmer",
+        "Fry"
+      ],
+      "ingredients": [
+        "Onion",
+        "Rings"
+      ],
+      "userId": 1,
+      "name": "Dinuguan",
+      "cookTime": "15",
+      "difficulty": "Moderate",
+      "description": "Test",
+      "cookTimeRaw": "15",
+      "id": "KEzoFx0"
+    },
+    {
+      "imageUrl": "https://myfoodbook.com.au/sites/default/files/styles/recipe_3_col/public/recipe_photo/Brev20155486_0.jpg?itok=1osMdS-X",
+      "categoryId": "1f4f2b16-8985-6d45-5749-bfa1f588727f",
+      "occasions": [
+        "Winter",
+        "Chinese New Year",
+        "Dinner Party",
+        "Autumn"
+      ],
+      "relatedCategories": [
+        "Dinner",
+        "Soups",
+        "Noodles"
+      ],
+      "rating": null,
+      "serving": 4,
+      "prepTimeRaw": null,
+      "prepTime": null,
+      "steps": [
+        "Simmer",
+        "Fry"
+      ],
+      "ingredients": [
+        "Onion",
+        "Rings"
+      ],
+      "userId": 1,
+      "name": "Tart Pinoy",
+      "cookTime": "60",
+      "difficulty": "Difficult",
+      "description": "Test",
+      "cookTimeRaw": "60",
+      "id": "GARNinz"
+    },
+    {
+      "imageUrl": "https://myfoodbook.com.au/sites/default/files/styles/recipe_3_col/public/recipe_photo/Brev20155486_0.jpg?itok=1osMdS-X",
+      "categoryId": "1f4f2b16-8985-6d45-5749-bfa1f588727f",
+      "occasions": [
+        "Winter",
+        "Chinese New Year",
+        "Dinner Party",
+        "Autumn"
+      ],
+      "relatedCategories": [
+        "Dinner",
+        "Soups",
+        "Noodles"
+      ],
+      "rating": null,
+      "serving": 4,
+      "prepTimeRaw": null,
+      "prepTime": null,
+      "steps": [
+        "Simmer",
+        "Fry"
+      ],
+      "ingredients": [
+        "Onion",
+        "Rings"
+      ],
+      "userId": 1,
+      "name": "New cipe",
+      "cookTime": "60",
+      "difficulty": "30",
+      "description": "Test",
+      "cookTimeRaw": "60",
+      "id": "PBzONtS"
+    },
+    {
+      "imageUrl": "https://myfoodbook.com.au/sites/default/files/styles/recipe_3_col/public/recipe_photo/Brev20155486_0.jpg?itok=1osMdS-X",
+      "categoryId": "1f4f2b16-8985-6d45-5749-bfa1f588727f",
+      "occasions": [
+        "Winter",
+        "Chinese New Year",
+        "Dinner Party",
+        "Autumn"
+      ],
+      "relatedCategories": [
+        "Dinner",
+        "Soups",
+        "Noodles"
+      ],
+      "rating": null,
+      "serving": 4,
+      "prepTimeRaw": null,
+      "prepTime": null,
+      "steps": [
+        "Simmer",
+        "Fry"
+      ],
+      "ingredients": [
+        "Onion",
+        "Rings"
+      ],
+      "userId": 1,
+      "name": "New recipe",
+      "cookTime": "60",
+      "difficulty": "Easy",
+      "description": "Desc",
+      "cookTimeRaw": "60",
+      "id": "P7Ydast"
+    },
+    {
+      "imageUrl": "https://myfoodbook.com.au/sites/default/files/styles/recipe_3_col/public/recipe_photo/Brev20155486_0.jpg?itok=1osMdS-X",
+      "categoryId": "1f4f2b16-8985-6d45-5749-bfa1f588727f",
+      "occasions": [
+        "Winter",
+        "Chinese New Year",
+        "Dinner Party",
+        "Autumn"
+      ],
+      "relatedCategories": [
+        "Dinner",
+        "Soups",
+        "Noodles"
+      ],
+      "rating": null,
+      "serving": 4,
+      "prepTimeRaw": null,
+      "prepTime": null,
+      "steps": [
+        "Simmer",
+        "Fry"
+      ],
+      "ingredients": [
+        "Onion",
+        "Rings"
+      ],
+      "userId": 1,
+      "name": "Newnrek",
+      "cookTime": "59",
+      "difficulty": "Difficult",
+      "description": "Test",
+      "cookTimeRaw": "59",
+      "id": "1gSoiV4"
     }
   ],
   "categories": [
@@ -51959,6 +52230,38 @@
       "imageUrl": "https://myfoodbook.com.au/sites/default/files/styles/category_collection_landing/public/category_image/Vsoy20155870_0.jpg?itok=BUFXEbgm",
       "description": "Create delicious smoothies, cocktails, mocktails and more at home!",
       "link": "https://myfoodbook.com.au/recipes/categories/drinks?categoryId=566d6b3a-3651-3362-c97f-42c5537f99d7"
+    }
+  ],
+  "users": [
+    {
+      "username": "test",
+      "password": "test",
+      "name": "Jon Consumer",
+      "id": 1
+    },
+    {
+      "username": "test1",
+      "password": "test1",
+      "name": "Paul Jeer",
+      "id": 2
+    },
+    {
+      "username": "test2",
+      "password": "test2",
+      "name": "Michelle Fibonacci",
+      "id": 3
+    }
+  ],
+  "favorites": [
+    {
+      "id": 1,
+      "userId": 1,
+      "recipeId": "00d9ef60-b8a6-23f3-5910-b285db4435a8"
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "recipeId": "019a7974-9482-917c-a335-f8b1f5f7df28"
     }
   ]
 }

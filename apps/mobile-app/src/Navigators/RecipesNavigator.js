@@ -8,7 +8,7 @@ import HeaderIconButton from '../Components/HeaderIconButton';
 import { View } from 'react-native';
 
 const RecipesNavigator = createStackNavigator({
-  RecipesList: {
+  Recipes: {
     screen: Recipes,
     navigationOptions: () => {
       return {

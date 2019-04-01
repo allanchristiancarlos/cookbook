@@ -15,7 +15,8 @@ const BaseButton = props => {
     block,
     look,
     size = 'default',
-    onPress 
+    onPress,
+    disabled
   } = props;
 
   const sizes = {
@@ -68,6 +69,13 @@ const BaseButton = props => {
     flexWrap: 'wrap'
   };
 
+  const isDisabled = !!disabled;
+
+  if (isDisabled) {
+    buttonTextStyles.color = colors.white;
+    buttonStyles.backgroundColor = colors.lightGray;
+  }
+
   const onPressHandler = () => {
     if (onPress) {
       onPress();
@@ -88,6 +96,7 @@ const BaseButton = props => {
   return (
     <View style={buttonWrapperStyles}>
       <TouchableHighlight
+        disabled={disabled}
         underlayColor={colors.lightGray}
         activeOpacity={0.9}
         onPress={onPressHandler}
