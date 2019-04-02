@@ -5,8 +5,9 @@ import NewRecipe from '../Areas/Recipes/Containers/NewRecipe';
 import RecipesNavigator from './RecipesNavigator';
 import CategoriesNavigator from './CategoriesNavigator';
 import NewRecipeNavigator from './NewRecipeNavigator';
-import { Theme } from '../Core';
 import MyRecipesNavigator from './MyRecipesNavigator';
+import ExploreNavigator from './ExploreNavigator';
+import { Theme } from '../Core';
 
 const { colors } = Theme;
 
@@ -21,16 +22,12 @@ const AppTabNavigator = createBottomTabNavigator(
         )
       })
     },
-    CategoriesTab: {
-      screen: CategoriesNavigator,
+    ExploreTab: {
+      screen: ExploreNavigator,
       navigationOptions: () => ({
-        title: 'Categories',
+        title: 'Explore',
         tabBarIcon: ({ tintColor }) => (
-          <Ionicons
-            name="md-square-outline"
-            size={24}
-            style={{ color: tintColor }}
-          />
+          <Ionicons name="md-compass" size={24} style={{ color: tintColor }} />
         )
       })
     },
@@ -48,6 +45,19 @@ const AppTabNavigator = createBottomTabNavigator(
         tabBarVisible: false
       })
     },
+    CategoriesTab: {
+      screen: CategoriesNavigator,
+      navigationOptions: () => ({
+        title: 'Categories',
+        tabBarIcon: ({ tintColor }) => (
+          <Ionicons
+            name="md-square-outline"
+            size={24}
+            style={{ color: tintColor }}
+          />
+        )
+      })
+    },
     MyRecipesTab: {
       screen: MyRecipesNavigator,
       navigationOptions: () => ({
@@ -58,15 +68,6 @@ const AppTabNavigator = createBottomTabNavigator(
             size={24}
             style={{ color: tintColor }}
           />
-        )
-      })
-    },
-    FavoritesTab: {
-      screen: RecipesNavigator,
-      navigationOptions: () => ({
-        title: 'Settings',
-        tabBarIcon: ({ tintColor }) => (
-          <Ionicons name="md-menu" size={24} style={{ color: tintColor }} />
         )
       })
     }
