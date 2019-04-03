@@ -8,7 +8,7 @@
       "cookTime": "Pressure Cook: 20 mins / Slow Cook: 3 - 5 hours (HI) OR 4 - 6 hours (LO)",
       "cookTimeRaw": null,
       "serving": 4,
-      "rating": 4.5,
+      "rating": 3.25,
       "difficulty": "Easy",
       "ingredients": [
         "2 tablespoons vegetable oil",
@@ -113,7 +113,7 @@
       "cookTime": "10 mins",
       "cookTimeRaw": 10,
       "serving": 4,
-      "rating": null,
+      "rating": 3.875,
       "difficulty": "Easy",
       "ingredients": [
         "1 ¼ cups warm water",
@@ -51755,7 +51755,7 @@
         "Soups",
         "Noodles"
       ],
-      "rating": null,
+      "rating": 2.2,
       "serving": 4,
       "prepTimeRaw": null,
       "prepTime": null,

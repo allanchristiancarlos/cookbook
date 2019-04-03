@@ -15,6 +15,19 @@ class RecipeDetail extends Component {
     data: {}
   };
 
+  onRateHandler = rating => {
+    const { id, rating: currentRating } = this.state.data;
+    this.props.navigation.push('RateRecipe', {
+      id: id,
+      rating: rating,
+      currentRating: currentRating
+    });
+  };
+
+  onRateRecipeHandler = () => {
+    this.onRateHandler(1);
+  }
+
   componentDidMount() {
     const { recipe } = this.props.navigation.state.params;
     this.setState({
@@ -77,8 +90,17 @@ class RecipeDetail extends Component {
               ))}
             </View>
           </Section>
-          <Section title="Rating">
-            <Rating rating={rating} />
+          <Section
+            title="Rating"
+            onAction={this.onRateRecipeHandler}
+            action="Rate this recipe"
+          >
+            <Rating
+              onPress={this.onRateHandler}
+              readOnly={true}
+              rating={rating}
+              size={32}
+            />
           </Section>
           <Section title="Comments" action="View All">
             <Text muted>No comments.</Text>

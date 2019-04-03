@@ -19,6 +19,18 @@ export class Http {
     return Http.fetch(url, options);
   }
 
+  static patch(url, data, options) {
+    options = {
+      ...options,
+      method: 'PATCH',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+    return Http.fetch(url, options);
+  }
+
   static fetch(url, options) {
     return fetch(`http://192.168.1.30:3000/${url}`, options).then(x =>
       x.json()
