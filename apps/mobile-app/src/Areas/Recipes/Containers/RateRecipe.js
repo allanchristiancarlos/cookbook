@@ -30,9 +30,17 @@ class RateRecipe extends Component {
     const divisor = isCurrentRatingZero ? 1 : 2;
     // simple to average rating computation
     const averageRating = (currentRating + rating) / divisor;
+    this.setState(state => ({
+      ...state,
+      isLoading: true
+    }));
     Http.patch(`recipes/${id}`, {
       rating: averageRating
     }).then(x => {
+      this.setState(state => ({
+        ...state,
+        isLoading: false
+      }));
       this.props.navigation.goBack();
     });
   };
@@ -46,8 +54,7 @@ class RateRecipe extends Component {
   }
 
   render() {
-    const isLoading = false;
-    const { rating } = this.state;
+    const { rating, isLoading = false } = this.state;
     return (
       <View
         style={{
