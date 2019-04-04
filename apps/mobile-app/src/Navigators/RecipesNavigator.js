@@ -4,6 +4,7 @@ import RecipesByCategory from '../Areas/Recipes/Containers/RecipesByCategory';
 import RecipesByOccasion from '../Areas/Recipes/Containers/RecipesByOccasion';
 import Recipes from '../Areas/Recipes/Containers/Recipes';
 import RateRecipe from '../Areas/Recipes/Containers/RateRecipe';
+import RecipeAddComment from '../Areas/Recipes/Containers/RecipeAddComment';
 import RecipeDetail from '../Areas/Recipes/Containers/RecipeDetail';
 import HeaderIconButton from '../Components/HeaderIconButton';
 import { View } from 'react-native';
@@ -31,6 +32,7 @@ const RecipesNavigator = createStackNavigator({
     }
   },
   RateRecipe,
+  RecipeAddComment,
   RecipesByCategory: {
     screen: RecipesByCategory,
     navigationOptions: ({ navigation }) => {
@@ -51,11 +53,12 @@ const RecipesNavigator = createStackNavigator({
   }
 });
 
-RecipesNavigator.navigationOptions = ({navigation}) => {
+RecipesNavigator.navigationOptions = ({ navigation }) => {
   let tabBarVisible;
   if (navigation.state.routes.length > 1) {
+    const routesWithoutTab = ['RateRecipe', 'RecipeAddComment'];
     navigation.state.routes.map(route => {
-      if (route.routeName === 'RateRecipe') {
+      if (routesWithoutTab.indexOf(route.routeName) !== -1) {
         tabBarVisible = false;
       } else {
         tabBarVisible = true;
@@ -67,6 +70,6 @@ RecipesNavigator.navigationOptions = ({navigation}) => {
     initialRouteName: 'Recipes',
     tabBarVisible
   };
-}
+};
 
 export default RecipesNavigator;

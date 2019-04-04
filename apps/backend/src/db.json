@@ -202,7 +202,7 @@
       "cookTime": "10 minutes",
       "cookTimeRaw": 10,
       "serving": 4,
-      "rating": null,
+      "rating": 3,
       "difficulty": "Easy",
       "ingredients": [
         "2 tablespoons Extra virgin olive oil",
@@ -290,7 +290,7 @@
       "cookTime": "45 minutes",
       "cookTimeRaw": 45,
       "serving": 6,
-      "rating": null,
+      "rating": 4,
       "difficulty": "Easy",
       "ingredients": [
         "2 sheets frozen shortcrust pastry thawed",
@@ -533,7 +533,7 @@
       "cookTime": "20 min for Tacos only",
       "cookTimeRaw": 20,
       "serving": 8,
-      "rating": null,
+      "rating": 5,
       "difficulty": "Easy",
       "ingredients": [
         "1 tablespoon olive oil, plus extra for brushing",
@@ -52234,19 +52234,19 @@
   ],
   "users": [
     {
-      "username": "test",
+      "username": "jonconsumer",
       "password": "test",
       "name": "Jon Consumer",
       "id": 1
     },
     {
-      "username": "test1",
+      "username": "pauljeer",
       "password": "test1",
       "name": "Paul Jeer",
       "id": 2
     },
     {
-      "username": "test2",
+      "username": "fibonacci",
       "password": "test2",
       "name": "Michelle Fibonacci",
       "id": 3
@@ -52262,6 +52262,120 @@
       "id": 2,
       "userId": 1,
       "recipeId": "019a7974-9482-917c-a335-f8b1f5f7df28"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "userId": 1,
+      "comment": "Sample Comment",
+      "recipeId": "0070f362-8760-287b-083b-60604e9db554",
+      "createdAt": "2019-04-04T23:28:56.782Z",
+      "updatedAt": "2019-04-04T23:28:56.782Z"
+    },
+    {
+      "id": 2,
+      "userId": 2,
+      "comment": "Sample Comment 2 \n New line",
+      "recipeId": "0070f362-8760-287b-083b-60604e9db554",
+      "createdAt": "2019-04-04T23:28:56.782Z",
+      "updatedAt": "2019-04-04T23:28:56.782Z"
+    },
+    {
+      "id": 3,
+      "userId": 1,
+      "comment": "Sample Comment 2 \n New line",
+      "recipeId": "0070f362-8760-287b-083b-60604e9db554",
+      "createdAt": "2019-04-04T23:28:56.782Z",
+      "updatedAt": "2019-04-04T23:28:56.782Z"
+    },
+    {
+      "id": 4,
+      "userId": 3,
+      "comment": "Sample Comment 2 \n New line",
+      "recipeId": "0070f362-8760-287b-083b-60604e9db554",
+      "createdAt": "2019-04-04T23:28:56.782Z",
+      "updatedAt": "2019-04-04T23:28:56.782Z"
+    },
+    {
+      "userId": 1,
+      "recipeId": "0070f362-8760-287b-083b-60604e9db554",
+      "comment": "Test create",
+      "createdAt": "2019-04-04T23:28:56.782Z",
+      "updatedAt": "2019-04-04T23:28:56.782Z",
+      "id": 5
+    },
+    {
+      "userId": 1,
+      "comment": "Test create with recipe",
+      "createdAt": "2019-04-04T23:28:56.782Z",
+      "updatedAt": "2019-04-04T23:28:56.782Z",
+      "recipeId": "0070f362-8760-287b-083b-60604e9db554",
+      "id": 6
+    },
+    {
+      "userId": 1,
+      "comment": "Test comment",
+      "createdAt": "2019-04-04T13:52:04.109Z",
+      "updatedAt": "2019-04-04T13:52:04.109Z",
+      "recipeId": "0070f362-8760-287b-083b-60604e9db554",
+      "id": 7
+    },
+    {
+      "userId": 1,
+      "comment": "New comment",
+      "createdAt": "2019-04-04T13:54:20.064Z",
+      "updatedAt": "2019-04-04T13:54:20.064Z",
+      "recipeId": "0070f362-8760-287b-083b-60604e9db554",
+      "id": 8
+    },
+    {
+      "userId": 1,
+      "comment": "Add comment",
+      "createdAt": "2019-04-04T13:54:42.651Z",
+      "updatedAt": "2019-04-04T13:54:42.651Z",
+      "recipeId": "0070f362-8760-287b-083b-60604e9db554",
+      "id": 9
+    },
+    {
+      "userId": 1,
+      "comment": "Another comment",
+      "createdAt": "2019-04-04T13:55:43.799Z",
+      "updatedAt": "2019-04-04T13:55:43.800Z",
+      "recipeId": "0070f362-8760-287b-083b-60604e9db554",
+      "id": 10
+    },
+    {
+      "userId": 1,
+      "comment": "Saving comment",
+      "createdAt": "2019-04-04T13:56:24.909Z",
+      "updatedAt": "2019-04-04T13:56:24.909Z",
+      "recipeId": "0070f362-8760-287b-083b-60604e9db554",
+      "id": 11
+    },
+    {
+      "userId": 1,
+      "comment": "Add my comment",
+      "createdAt": "2019-04-04T14:00:30.300Z",
+      "updatedAt": "2019-04-04T14:00:30.300Z",
+      "recipeId": "008d0db2-b2c1-d5d8-50c8-10dd3a496cf4",
+      "id": 12
+    },
+    {
+      "userId": 1,
+      "comment": "New comment",
+      "createdAt": "2019-04-04T14:01:07.729Z",
+      "updatedAt": "2019-04-04T14:01:07.729Z",
+      "recipeId": "008d0db2-b2c1-d5d8-50c8-10dd3a496cf4",
+      "id": 13
+    },
+    {
+      "userId": 1,
+      "comment": "Pampangeno",
+      "createdAt": "2019-04-04T14:01:20.838Z",
+      "updatedAt": "2019-04-04T14:01:20.838Z",
+      "recipeId": "0140cf8b-97b8-9420-c435-26ff67756b41",
+      "id": 14
     }
   ]
 }

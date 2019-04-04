@@ -5,18 +5,21 @@ import { Section } from '../../../Components/Section';
 import Rating from '../../../Components/Rating';
 import { List, ListItem } from '../../../Components/List';
 import { RecipeDetailHeader } from '../Components/RecipeDetailHeader';
-import { Text, Theme } from '../../../Core';
+import RecipeComment from '../Components/RecipeComment';
+import { Text, Theme, Http, Button } from '../../../Core';
 import WithRecipeNavigator from '../Hoc/WithRecipeNavigator';
+import { of, forkJoin } from 'rxjs';
 
 const { colors } = Theme;
 
 class RecipeDetail extends Component {
   state = {
-    data: {}
+    recipe: {},
+    comments: []
   };
 
   onRateHandler = rating => {
-    const { id, rating: currentRating } = this.state.data;
+    const { id, rating: currentRating } = this.state.recipe;
     this.props.navigation.push('RateRecipe', {
       id: id,
       rating: rating,
@@ -24,23 +27,84 @@ class RecipeDetail extends Component {
     });
   };
 
+  onAddCommentHandler = () => {
+    this.props.navigation.push('RecipeAddComment', {
+      recipe: this.state.recipe,
+      onCommentSaved: ({ id }) => {
+        Http.get(`comments/${id}?_expand=user`).then(newComment => {
+          this.setState(state => {
+            return {
+              ...state,
+              comments: [...state.comments, newComment]
+            };
+          });
+        });
+      }
+    });
+  };
+
   onRateRecipeHandler = () => {
     this.onRateHandler(1);
-  }
+  };
 
   componentDidMount() {
     const { recipe } = this.props.navigation.state.params;
-    this.setState({
-      data: recipe
+    forkJoin(
+      of(recipe),
+      Http.get(`recipes/${recipe.id}/comments?_expand=user`)
+    ).subscribe(([recipe, comments]) => {
+      this.setState(() => ({
+        recipe,
+        comments
+      }));
     });
   }
 
   render() {
-    const data = this.state.data || {};
-    const { ingredients, steps, relatedCategories, occasions, rating } = data;
+    const { recipe, comments } = this.state;
+    const { ingredients, steps, relatedCategories, occasions, rating } = recipe;
+
+    const renderComments = () => {
+      const hasComments = comments && comments.length > 0;
+
+      const renderAddCommentButton = (
+        <View
+          style={{
+            marginTop: 5,
+            flex: 1,
+            flexDirection: 'row',
+            justifyContent: 'center'
+          }}
+        >
+          <Button onPress={this.onAddCommentHandler} look="bare" kind="primary">
+            Add comment
+          </Button>
+        </View>
+      );
+
+      if (!hasComments) {
+        return (
+          <View>
+            <Text muted>No comments.</Text>
+            {renderAddCommentButton}
+          </View>
+        );
+      }
+
+      const commentsList = comments.map((comment, index) => {
+        return <RecipeComment key={index} comment={comment} />;
+      });
+
+      return (
+        <View>
+          {commentsList}
+          {renderAddCommentButton}
+        </View>
+      );
+    };
     return (
       <ScrollView>
-        <RecipeDetailHeader data={data} />
+        <RecipeDetailHeader data={recipe} />
         <View style={{ paddingHorizontal: 20 }}>
           <Section title="Ingredients">
             <List>
@@ -102,9 +166,7 @@ class RecipeDetail extends Component {
               size={32}
             />
           </Section>
-          <Section title="Comments" action="View All">
-            <Text muted>No comments.</Text>
-          </Section>
+          <Section title="Comments">{renderComments()}</Section>
         </View>
       </ScrollView>
     );
