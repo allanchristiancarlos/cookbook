@@ -1,6 +1,7 @@
 import React from 'react';
 import { Chip } from '../../../Components/Chip';
 import { Theme } from '../../../Core';
+import { numberFormatMaxDecimalPlaces } from '../../../Core';
 
 const { colors } = Theme;
 
@@ -22,7 +23,7 @@ export const RecipeRatingChip = props => {
   }
   return (
     <Chip background={backgroudColor} color={color}>
-      {rating}/5
+      {numberFormatMaxDecimalPlaces(rating, 2)}/5
     </Chip>
   );
 };

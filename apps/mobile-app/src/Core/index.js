@@ -6,3 +6,4 @@ export { Http } from './Http';
 export { TextBox, TextBoxSamples } from './TextBox';
 export { TappableText } from './TappableText';
 export * from './StringUtils';
+export * from './NumberUtils';

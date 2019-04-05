@@ -1,5 +1,6 @@
 import React from 'react';
 import { ContentHeader } from '../../../Components/ContentHeader';
+import { numberFormatMaxDecimalPlaces } from '../../../Core';
 
 export const RecipeDetailHeader = props => {
   const { data } = props;
@@ -8,7 +9,7 @@ export const RecipeDetailHeader = props => {
   const meta = [
     {
       label: 'Rating',
-      value: rating || 'N/A'
+      value: numberFormatMaxDecimalPlaces(rating, 2) || 'N/A'
     },
     {
       label: 'Difficulty',
