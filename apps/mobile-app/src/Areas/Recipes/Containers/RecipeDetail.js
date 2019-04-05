@@ -142,11 +142,11 @@ class RecipeDetail extends Component {
     });
 
     Http.get(`recipes/${recipe.id}/favorites?_limit=1&userId=1`).then(
-      favorite => {
-        this.setFavorite(!!favorite);
+      ([favorite]) => {
         this.setState(() => ({
           favorite
         }));
+        this.setFavorite(!!favorite);
       }
     );
   }
