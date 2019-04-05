@@ -3,6 +3,8 @@ import { Http } from '../../../Core';
 import RecipesList from '../Components/RecipesList';
 import { normalizeRecipe } from '../Utils';
 import WithRecipeNavigator from '../Hoc/WithRecipeNavigator';
+import { StatusBar } from 'react-native';
+import { SafeAreaView } from 'react-navigation';
 
 class Recipes extends Component {
   state = {
@@ -22,11 +24,14 @@ class Recipes extends Component {
     const { data } = this.state;
 
     return (
-      <RecipesList
-        data={data}
-        onShowRecipe={this.props.navigateToRecipe}
-        onShowCategory={this.props.navigateToCategory}
-      />
+      <SafeAreaView>
+        <StatusBar barStyle="dark-content" />
+        <RecipesList
+          data={data}
+          onShowRecipe={this.props.navigateToRecipe}
+          onShowCategory={this.props.navigateToCategory}
+        />
+      </SafeAreaView>
     );
   }
 }

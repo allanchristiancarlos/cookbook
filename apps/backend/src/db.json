@@ -8,7 +8,7 @@
       "cookTime": "Pressure Cook: 20 mins / Slow Cook: 3 - 5 hours (HI) OR 4 - 6 hours (LO)",
       "cookTimeRaw": null,
       "serving": 4,
-      "rating": 3.25,
+      "rating": 2.625,
       "difficulty": "Easy",
       "ingredients": [
         "2 tablespoons vegetable oil",
@@ -52262,6 +52262,16 @@
       "id": 2,
       "userId": 1,
       "recipeId": "019a7974-9482-917c-a335-f8b1f5f7df28"
+    },
+    {
+      "userId": 1,
+      "recipeId": "0070f362-8760-287b-083b-60604e9db554",
+      "id": 3
+    },
+    {
+      "userId": 1,
+      "recipeId": "01ed40ed-4dc5-d436-0598-510ae065bd41",
+      "id": 4
     }
   ],
   "comments": [
@@ -52376,6 +52386,22 @@
       "updatedAt": "2019-04-04T14:01:20.838Z",
       "recipeId": "0140cf8b-97b8-9420-c435-26ff67756b41",
       "id": 14
+    },
+    {
+      "userId": 1,
+      "comment": "Test comment",
+      "createdAt": "2019-04-05T13:18:43.244Z",
+      "updatedAt": "2019-04-05T13:18:43.244Z",
+      "recipeId": "01ed40ed-4dc5-d436-0598-510ae065bd41",
+      "id": 15
+    },
+    {
+      "userId": 1,
+      "comment": "Another comment",
+      "createdAt": "2019-04-05T13:53:54.625Z",
+      "updatedAt": "2019-04-05T13:53:54.625Z",
+      "recipeId": "0070f362-8760-287b-083b-60604e9db554",
+      "id": 16
     }
   ]
 }

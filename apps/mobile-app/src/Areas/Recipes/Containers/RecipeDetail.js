@@ -3,20 +3,48 @@ import { View, ScrollView } from 'react-native';
 import { Chip } from '../../../Components/Chip';
 import { Section } from '../../../Components/Section';
 import Rating from '../../../Components/Rating';
+import HeaderIconButton from '../../../Components/HeaderIconButton';
 import { List, ListItem } from '../../../Components/List';
 import { RecipeDetailHeader } from '../Components/RecipeDetailHeader';
 import RecipeComment from '../Components/RecipeComment';
 import { Text, Theme, Http, Button } from '../../../Core';
-import WithRecipeNavigator from '../Hoc/WithRecipeNavigator';
 import { of, forkJoin } from 'rxjs';
 
 const { colors } = Theme;
 
 class RecipeDetail extends Component {
-  state = {
-    recipe: {},
-    comments: []
+  static navigationOptions = ({ navigation }) => {
+    const isFavorite = navigation.getParam('isFavorite', false);
+    const onToggleFavorite = navigation.getParam('onToggleFavorite');
+
+    const onToggleFavoriteHandler = () => {
+      if (onToggleFavorite) {
+        onToggleFavorite();
+      }
+    };
+
+    return {
+      title: `Recipe Details`,
+      headerRight: (
+        <View style={{ marginRight: 20 }}>
+          <HeaderIconButton
+            onPress={onToggleFavoriteHandler}
+            icon={isFavorite ? 'md-heart' : 'md-heart-empty'}
+            color={isFavorite ? colors.primary : colors.textColor}
+          />
+        </View>
+      )
+    };
   };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      recipe: {},
+      comments: [],
+      isFavorite: false
+    };
+  }
 
   onRateHandler = rating => {
     const { id, rating: currentRating } = this.state.recipe;
@@ -43,21 +71,84 @@ class RecipeDetail extends Component {
     });
   };
 
+  onOccasionPressedHandler = occasion => {
+    this.props.navigation.push('RecipesByOccasion', {
+      occasion
+    });
+  };
+
+  onCategoryPressedHandler = category => {
+    this.props.navigation.push('RecipesByCategory', {
+      category
+    });
+  };
+
   onRateRecipeHandler = () => {
     this.onRateHandler(1);
   };
 
+  onToggleFavorite = () => {
+    let { isFavorite } = this.state;
+    const { favorite, recipe } = this.state;
+
+    isFavorite = !isFavorite;
+
+    const shouldDeleteFavorite = isFavorite === false;
+
+    if (shouldDeleteFavorite && favorite) {
+      const { id } = favorite;
+      Http.delete(`favorites/${id}`).catch(x => {
+        // revert on error
+        this.setFavorite(!isFavorite);
+      });
+    } else {
+      Http.post(`recipes/${recipe.id}/favorites`, {
+        userId: 1
+      }).catch(() => {
+        // revert on error
+        this.setFavorite(!isFavorite);
+      });
+    }
+
+    this.setFavorite(isFavorite);
+  };
+
+  setFavorite(isFavorite) {
+    const { navigation } = this.props;
+    this.setState(state => ({
+      ...state,
+      isFavorite: isFavorite
+    }));
+    navigation.setParams({
+      isFavorite: isFavorite
+    });
+  }
+
   componentDidMount() {
-    const { recipe } = this.props.navigation.state.params;
-    forkJoin(
-      of(recipe),
-      Http.get(`recipes/${recipe.id}/comments?_expand=user`)
-    ).subscribe(([recipe, comments]) => {
+    const { navigation } = this.props;
+    const { recipe } = navigation.state.params;
+    navigation.setParams({
+      onToggleFavorite: this.onToggleFavorite
+    });
+
+    this.setState(() => ({
+      recipe
+    }));
+
+    Http.get(`recipes/${recipe.id}/comments?_expand=user`).then(comments => {
       this.setState(() => ({
-        recipe,
         comments
       }));
     });
+
+    Http.get(`recipes/${recipe.id}/favorites?_limit=1&userId=1`).then(
+      favorite => {
+        this.setFavorite(!!favorite);
+        this.setState(() => ({
+          favorite
+        }));
+      }
+    );
   }
 
   render() {
@@ -131,7 +222,9 @@ class RecipeDetail extends Component {
                   <Chip
                     color={colors.primary}
                     backgroundColor={colors.secondary}
-                    onPress={() => this.props.navigateToCategory(category)}
+                    onPress={() =>
+                      this.onCategoryPressedHandler(category)
+                    }
                   >
                     {category}
                   </Chip>
@@ -146,7 +239,9 @@ class RecipeDetail extends Component {
                   <Chip
                     color={colors.primary}
                     backgroundColor={colors.secondary}
-                    onPress={() => this.props.navigateToOccasion(occasion)}
+                    onPress={() =>
+                      this.onOccasionPressedHandler(occasion)
+                    }
                   >
                     {occasion}
                   </Chip>
@@ -173,4 +268,4 @@ class RecipeDetail extends Component {
   }
 }
 
-export default WithRecipeNavigator(RecipeDetail);
+export default RecipeDetail;

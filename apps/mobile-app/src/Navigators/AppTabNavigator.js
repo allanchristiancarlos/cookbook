@@ -1,7 +1,6 @@
 import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from 'react-navigation';
-import NewRecipe from '../Areas/Recipes/Containers/NewRecipe';
 import RecipesNavigator from './RecipesNavigator';
 import CategoriesNavigator from './CategoriesNavigator';
 import NewRecipeNavigator from './NewRecipeNavigator';

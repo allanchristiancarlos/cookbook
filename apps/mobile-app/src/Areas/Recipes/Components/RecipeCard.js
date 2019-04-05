@@ -56,7 +56,7 @@ export class RecipeCard extends Component {
             <Image width={Dimensions.width} height={200} url={imageUrl} />
           </View>
           <View style={{ paddingHorizontal: 10 }}>
-            <Text bold>{name}</Text>
+            <Text bold size="large">{name}</Text>
             <View
               style={{
                 marginTop: 6,

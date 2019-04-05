@@ -19,6 +19,14 @@ export class Http {
     return Http.fetch(url, options);
   }
 
+  static delete(url, options) {
+    options = {
+      ...options,
+      method: 'DELETE'
+    };
+    return Http.fetch(url, options);
+  }
+
   static patch(url, data, options) {
     options = {
       ...options,

@@ -6,7 +6,7 @@ import { Theme } from '../Core';
 const { colors } = Theme;
 
 function HeaderIconButton(props) {
-  const { icon, onPress, size = 28 } = props;
+  const { icon, onPress, size = 28, color = colors.textColor } = props;
 
   const onPressHandler = () => {
     if (!onPress) {
@@ -18,7 +18,7 @@ function HeaderIconButton(props) {
 
   return (
     <TouchableOpacity onPress={onPressHandler} activeOpacity={0.4}>
-      <Ionicons name={icon} size={size} color={colors.textColor} />
+      <Ionicons name={icon} size={size} color={color} />
     </TouchableOpacity>
   );
 }

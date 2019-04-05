@@ -18,19 +18,7 @@ const RecipesNavigator = createStackNavigator({
       };
     }
   },
-  RecipeDetail: {
-    screen: RecipeDetail,
-    navigationOptions: () => {
-      return {
-        title: 'Recipe Details',
-        headerRight: (
-          <View style={{ marginRight: 20 }}>
-            <HeaderIconButton icon="md-heart-empty" />
-          </View>
-        )
-      };
-    }
-  },
+  RecipeDetail,
   RateRecipe,
   RecipeAddComment,
   RecipesByCategory: {
@@ -68,7 +56,8 @@ RecipesNavigator.navigationOptions = ({ navigation }) => {
 
   return {
     initialRouteName: 'Recipes',
-    tabBarVisible
+    tabBarVisible,
+    headerMode: 'none'
   };
 };
 
