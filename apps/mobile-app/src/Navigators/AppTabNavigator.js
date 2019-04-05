@@ -77,7 +77,7 @@ const AppTabNavigator = createBottomTabNavigator(
       inactiveTintColor: colors.muted,
       showIcon: true
     },
-    initialRouteName: 'HomeTab'
+    initialRouteName: 'MyRecipesTab'
   }
 );
 

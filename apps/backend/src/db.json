@@ -4,6 +4,7 @@
       "id": "0070f362-8760-287b-083b-60604e9db554",
       "name": "PHO GA (VIETNAMESE CHICKEN NOODLE SOUP)\n",
       "prepTimeRaw": 15,
+      "userId": 1,
       "prepTime": "15 minutes",
       "cookTime": "Pressure Cook: 20 mins / Slow Cook: 3 - 5 hours (HI) OR 4 - 6 hours (LO)",
       "cookTimeRaw": null,
@@ -40,17 +41,8 @@
         "Select PRESSURE COOK or SLOW COOK SOUP",
         "When cooking has completed, transfer chicken legs to a plate and shred. Strain broth through a fine mesh sieve and discard solids. Skim any scum from the top. Season to taste with additional fish sauce and sugar"
       ],
-      "occasions": [
-        "Winter",
-        "Chinese New Year",
-        "Dinner Party",
-        "Autumn"
-      ],
-      "relatedCategories": [
-        "Dinner",
-        "Soups",
-        "Noodles"
-      ],
+      "occasions": ["Winter", "Chinese New Year", "Dinner Party", "Autumn"],
+      "relatedCategories": ["Dinner", "Soups", "Noodles"],
       "imageUrl": "https://myfoodbook.com.au/sites/default/files/styles/recipe_3_col/public/recipe_photo/Brev20155486_0.jpg?itok=1osMdS-X",
       "link": "https://myfoodbook.com.au/recipes/show/pho-ga-vietnamese-chicken-noodle-soup?recipeId=0070f362-8760-287b-083b-60604e9db554",
       "categoryId": "1f4f2b16-8985-6d45-5749-bfa1f588727f"
@@ -59,6 +51,7 @@
       "id": "008d0db2-b2c1-d5d8-50c8-10dd3a496cf4",
       "name": "WAFFLES WITH SAUTEED MUSHROOMS AND MAPLE BACON\n",
       "prepTimeRaw": 10,
+      "userId": 1,
       "prepTime": "10 mins",
       "cookTime": "15 mins",
       "cookTimeRaw": 15,
@@ -96,11 +89,7 @@
         "Holidays",
         "Australia Day"
       ],
-      "relatedCategories": [
-        "Breakfast",
-        "Brunch",
-        "Pork"
-      ],
+      "relatedCategories": ["Breakfast", "Brunch", "Pork"],
       "imageUrl": "https://myfoodbook.com.au/sites/default/files/styles/recipe_3_col/public/recipe_photo/Mush20162765_0.jpg?itok=Y2055Mrb",
       "link": "https://myfoodbook.com.au/recipes/show/waffles-with-sauteed-mushrooms-and-maple-bacon?recipeId=008d0db2-b2c1-d5d8-50c8-10dd3a496cf4",
       "categoryId": "912643d2-e998-a3ca-0b7d-87e07ce54361"
@@ -953,7 +942,7 @@
       "cookTime": "3 mins",
       "cookTimeRaw": 3,
       "serving": 4,
-      "rating": null,
+      "rating": 5,
       "difficulty": "Easy",
       "ingredients": [
         "1/2 large rockmelon",
@@ -51740,107 +51729,6 @@
       "imageUrl": "https://myfoodbook.com.au/sites/default/files/styles/recipe_3_col/public/recipe_photo/Mush20162741_0.jpg?itok=TjFcGRKB",
       "link": "https://myfoodbook.com.au/recipes/show/beef-and-mushroom-stroganoff?recipeId=ffac8258-9c60-1719-8b7b-174e515223d5",
       "categoryId": "4d087f49-ef14-8c37-8b5a-10aa2d9af316"
-    },
-    {
-      "imageUrl": "https://myfoodbook.com.au/sites/default/files/styles/recipe_3_col/public/recipe_photo/Brev20155486_0.jpg?itok=1osMdS-X",
-      "categoryId": "1f4f2b16-8985-6d45-5749-bfa1f588727f",
-      "occasions": [
-        "Winter",
-        "Chinese New Year",
-        "Dinner Party",
-        "Autumn"
-      ],
-      "relatedCategories": [
-        "Dinner",
-        "Soups",
-        "Noodles"
-      ],
-      "rating": 2.2,
-      "serving": 4,
-      "prepTimeRaw": null,
-      "prepTime": null,
-      "steps": [
-        "Simmer",
-        "Fry"
-      ],
-      "ingredients": [
-        "Onion",
-        "Rings"
-      ],
-      "name": "Sinigang na Baboy",
-      "cookTime": "20",
-      "difficulty": "Easy",
-      "description": "Test",
-      "cookTimeRaw": "20",
-      "id": "Y-BTQK1"
-    },
-    {
-      "imageUrl": "https://myfoodbook.com.au/sites/default/files/styles/recipe_3_col/public/recipe_photo/Brev20155486_0.jpg?itok=1osMdS-X",
-      "categoryId": "1f4f2b16-8985-6d45-5749-bfa1f588727f",
-      "occasions": [
-        "Winter",
-        "Chinese New Year",
-        "Dinner Party",
-        "Autumn"
-      ],
-      "relatedCategories": [
-        "Dinner",
-        "Soups",
-        "Noodles"
-      ],
-      "rating": null,
-      "serving": 4,
-      "prepTimeRaw": null,
-      "prepTime": null,
-      "steps": [
-        "Simmer",
-        "Fry"
-      ],
-      "ingredients": [
-        "Onion",
-        "Rings"
-      ],
-      "userId": 1,
-      "name": "Sinigang na Baboy",
-      "cookTime": "20",
-      "difficulty": "Easy",
-      "description": "Lorem ipsum",
-      "cookTimeRaw": "20",
-      "id": "gUmirEH"
-    },
-    {
-      "imageUrl": "https://myfoodbook.com.au/sites/default/files/styles/recipe_3_col/public/recipe_photo/Brev20155486_0.jpg?itok=1osMdS-X",
-      "categoryId": "1f4f2b16-8985-6d45-5749-bfa1f588727f",
-      "occasions": [
-        "Winter",
-        "Chinese New Year",
-        "Dinner Party",
-        "Autumn"
-      ],
-      "relatedCategories": [
-        "Dinner",
-        "Soups",
-        "Noodles"
-      ],
-      "rating": null,
-      "serving": 4,
-      "prepTimeRaw": null,
-      "prepTime": null,
-      "steps": [
-        "Simmer",
-        "Fry"
-      ],
-      "ingredients": [
-        "Onion",
-        "Rings"
-      ],
-      "userId": 1,
-      "name": "Sinigang na Baboy",
-      "cookTime": "20",
-      "difficulty": "Easy",
-      "description": "Test",
-      "cookTimeRaw": "20",
-      "id": "BhLM10w"
     },
     {
       "imageUrl": "https://myfoodbook.com.au/sites/default/files/styles/recipe_3_col/public/recipe_photo/Brev20155486_0.jpg?itok=1osMdS-X",

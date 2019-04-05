@@ -4,6 +4,12 @@ import { Text, TextBox, Button, Http } from '../../../Core';
 import WithRecipeNavigator from '../Hoc/WithRecipeNavigator';
 
 class NewRecipe extends Component {
+  static navigationOptions = () => {
+    return {
+      title: 'New Recipe',
+      tabBarVisible: false
+    }
+  }
   state = {
     name: '',
     cookTime: '',
@@ -145,4 +151,4 @@ class NewRecipe extends Component {
   }
 }
 
-export default WithRecipeNavigator(NewRecipe);
+export default NewRecipe;

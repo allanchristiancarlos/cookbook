@@ -1,22 +1,30 @@
-import React from 'react';
 import { createStackNavigator } from 'react-navigation';
-import RecipesByCategory from '../Areas/Recipes/Containers/RecipesByCategory';
-import RecipesByOccasion from '../Areas/Recipes/Containers/RecipesByOccasion';
-import Recipes from '../Areas/Recipes/Containers/Recipes';
-import RecipeDetail from '../Areas/Recipes/Containers/RecipeDetail';
-import HeaderIconButton from '../Components/HeaderIconButton';
-import { View } from 'react-native';
 import MyRecipes from '../Areas/Recipes/Containers/MyRecipes';
+import NewRecipe from '../Areas/Recipes/Containers/NewRecipe';
 
 const MyRecipesNavigator = createStackNavigator({
-  MyRecipes: {
-    screen: MyRecipes,
-    navigationOptions: () => {
-      return {
-        title: 'My Recipes'
-      };
-    }
-  }
+  MyRecipes,
+  NewRecipe
 });
+
+MyRecipesNavigator.navigationOptions = ({ navigation }) => {
+  let tabBarVisible;
+  if (navigation.state.routes.length > 1) {
+    const routesWithoutTab = ['NewRecipe'];
+    navigation.state.routes.map(route => {
+      if (routesWithoutTab.indexOf(route.routeName) !== -1) {
+        tabBarVisible = false;
+      } else {
+        tabBarVisible = true;
+      }
+    });
+  }
+
+  return {
+    initialRouteName: 'MyRecipes',
+    tabBarVisible,
+    headerMode: 'none'
+  };
+};
 
 export default MyRecipesNavigator;
