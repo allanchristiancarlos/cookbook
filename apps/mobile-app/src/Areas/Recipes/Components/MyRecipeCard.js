@@ -40,7 +40,8 @@ class MyRecipeCard extends Component {
             flexDirection: 'row',
             padding: 10,
             borderBottomWidth: 1,
-            borderBottomColor: colors.lighterGray
+            borderBottomColor: colors.lighterGray,
+            backgroundColor: colors.white
           }}
         >
           <View style={{ width: 72, marginRight: 10 }}>

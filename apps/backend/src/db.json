@@ -41,8 +41,17 @@
         "Select PRESSURE COOK or SLOW COOK SOUP",
         "When cooking has completed, transfer chicken legs to a plate and shred. Strain broth through a fine mesh sieve and discard solids. Skim any scum from the top. Season to taste with additional fish sauce and sugar"
       ],
-      "occasions": ["Winter", "Chinese New Year", "Dinner Party", "Autumn"],
-      "relatedCategories": ["Dinner", "Soups", "Noodles"],
+      "occasions": [
+        "Winter",
+        "Chinese New Year",
+        "Dinner Party",
+        "Autumn"
+      ],
+      "relatedCategories": [
+        "Dinner",
+        "Soups",
+        "Noodles"
+      ],
       "imageUrl": "https://myfoodbook.com.au/sites/default/files/styles/recipe_3_col/public/recipe_photo/Brev20155486_0.jpg?itok=1osMdS-X",
       "link": "https://myfoodbook.com.au/recipes/show/pho-ga-vietnamese-chicken-noodle-soup?recipeId=0070f362-8760-287b-083b-60604e9db554",
       "categoryId": "1f4f2b16-8985-6d45-5749-bfa1f588727f"
@@ -89,7 +98,11 @@
         "Holidays",
         "Australia Day"
       ],
-      "relatedCategories": ["Breakfast", "Brunch", "Pork"],
+      "relatedCategories": [
+        "Breakfast",
+        "Brunch",
+        "Pork"
+      ],
       "imageUrl": "https://myfoodbook.com.au/sites/default/files/styles/recipe_3_col/public/recipe_photo/Mush20162765_0.jpg?itok=Y2055Mrb",
       "link": "https://myfoodbook.com.au/recipes/show/waffles-with-sauteed-mushrooms-and-maple-bacon?recipeId=008d0db2-b2c1-d5d8-50c8-10dd3a496cf4",
       "categoryId": "912643d2-e998-a3ca-0b7d-87e07ce54361"
@@ -51757,148 +51770,14 @@
         "Rings"
       ],
       "userId": 1,
-      "name": "Dinuguan",
-      "cookTime": "15",
+      "createdAt": "2019-04-06T01:49:19.458Z",
+      "updatedAt": "2019-04-06T01:49:19.458Z",
+      "name": "New recipe",
+      "cookTime": "50",
       "difficulty": "Moderate",
       "description": "Test",
-      "cookTimeRaw": "15",
-      "id": "KEzoFx0"
-    },
-    {
-      "imageUrl": "https://myfoodbook.com.au/sites/default/files/styles/recipe_3_col/public/recipe_photo/Brev20155486_0.jpg?itok=1osMdS-X",
-      "categoryId": "1f4f2b16-8985-6d45-5749-bfa1f588727f",
-      "occasions": [
-        "Winter",
-        "Chinese New Year",
-        "Dinner Party",
-        "Autumn"
-      ],
-      "relatedCategories": [
-        "Dinner",
-        "Soups",
-        "Noodles"
-      ],
-      "rating": null,
-      "serving": 4,
-      "prepTimeRaw": null,
-      "prepTime": null,
-      "steps": [
-        "Simmer",
-        "Fry"
-      ],
-      "ingredients": [
-        "Onion",
-        "Rings"
-      ],
-      "userId": 1,
-      "name": "Tart Pinoy",
-      "cookTime": "60",
-      "difficulty": "Difficult",
-      "description": "Test",
-      "cookTimeRaw": "60",
-      "id": "GARNinz"
-    },
-    {
-      "imageUrl": "https://myfoodbook.com.au/sites/default/files/styles/recipe_3_col/public/recipe_photo/Brev20155486_0.jpg?itok=1osMdS-X",
-      "categoryId": "1f4f2b16-8985-6d45-5749-bfa1f588727f",
-      "occasions": [
-        "Winter",
-        "Chinese New Year",
-        "Dinner Party",
-        "Autumn"
-      ],
-      "relatedCategories": [
-        "Dinner",
-        "Soups",
-        "Noodles"
-      ],
-      "rating": null,
-      "serving": 4,
-      "prepTimeRaw": null,
-      "prepTime": null,
-      "steps": [
-        "Simmer",
-        "Fry"
-      ],
-      "ingredients": [
-        "Onion",
-        "Rings"
-      ],
-      "userId": 1,
-      "name": "New cipe",
-      "cookTime": "60",
-      "difficulty": "30",
-      "description": "Test",
-      "cookTimeRaw": "60",
-      "id": "PBzONtS"
-    },
-    {
-      "imageUrl": "https://myfoodbook.com.au/sites/default/files/styles/recipe_3_col/public/recipe_photo/Brev20155486_0.jpg?itok=1osMdS-X",
-      "categoryId": "1f4f2b16-8985-6d45-5749-bfa1f588727f",
-      "occasions": [
-        "Winter",
-        "Chinese New Year",
-        "Dinner Party",
-        "Autumn"
-      ],
-      "relatedCategories": [
-        "Dinner",
-        "Soups",
-        "Noodles"
-      ],
-      "rating": null,
-      "serving": 4,
-      "prepTimeRaw": null,
-      "prepTime": null,
-      "steps": [
-        "Simmer",
-        "Fry"
-      ],
-      "ingredients": [
-        "Onion",
-        "Rings"
-      ],
-      "userId": 1,
-      "name": "New recipe",
-      "cookTime": "60",
-      "difficulty": "Easy",
-      "description": "Desc",
-      "cookTimeRaw": "60",
-      "id": "P7Ydast"
-    },
-    {
-      "imageUrl": "https://myfoodbook.com.au/sites/default/files/styles/recipe_3_col/public/recipe_photo/Brev20155486_0.jpg?itok=1osMdS-X",
-      "categoryId": "1f4f2b16-8985-6d45-5749-bfa1f588727f",
-      "occasions": [
-        "Winter",
-        "Chinese New Year",
-        "Dinner Party",
-        "Autumn"
-      ],
-      "relatedCategories": [
-        "Dinner",
-        "Soups",
-        "Noodles"
-      ],
-      "rating": null,
-      "serving": 4,
-      "prepTimeRaw": null,
-      "prepTime": null,
-      "steps": [
-        "Simmer",
-        "Fry"
-      ],
-      "ingredients": [
-        "Onion",
-        "Rings"
-      ],
-      "userId": 1,
-      "name": "Newnrek",
-      "cookTime": "59",
-      "difficulty": "Difficult",
-      "description": "Test",
-      "cookTimeRaw": "59",
-      "id": "1gSoiV4"
+      "cookTimeRaw": "50",
+      "id": "T5Zd7O_"
     }
   ],
   "categories": [
@@ -52160,6 +52039,16 @@
       "userId": 1,
       "recipeId": "01ed40ed-4dc5-d436-0598-510ae065bd41",
       "id": 4
+    },
+    {
+      "userId": 1,
+      "recipeId": "008d0db2-b2c1-d5d8-50c8-10dd3a496cf4",
+      "id": 5
+    },
+    {
+      "userId": 1,
+      "recipeId": "0116e8ca-b4a0-2ef9-34d3-3b998f582726",
+      "id": 6
     }
   ],
   "comments": [
@@ -52290,6 +52179,14 @@
       "updatedAt": "2019-04-05T13:53:54.625Z",
       "recipeId": "0070f362-8760-287b-083b-60604e9db554",
       "id": 16
+    },
+    {
+      "userId": 1,
+      "comment": "New comment",
+      "createdAt": "2019-04-06T00:27:28.673Z",
+      "updatedAt": "2019-04-06T00:27:28.673Z",
+      "recipeId": "008d0db2-b2c1-d5d8-50c8-10dd3a496cf4",
+      "id": 17
     }
   ]
 }

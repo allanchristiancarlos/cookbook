@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { Http, Theme } from '../../../Core';
-import { View, ScrollView } from 'react-native';
+import { View, FlatList } from 'react-native';
 import { normalizeRecipe } from '../Utils';
 import MyRecipeCard from '../Components/MyRecipeCard';
 import HeaderIconButton from '../../../Components/HeaderIconButton';
 import Layout from '../../../Components/Layout';
+import Swipeout from 'react-native-swipeout';
 
 class MyRecipes extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -43,12 +44,12 @@ class MyRecipes extends Component {
     });
   };
 
-  onSavedRecipe = (recipe) => {
+  onSavedRecipe = recipe => {
     this.setState(state => ({
       ...state,
       data: [recipe, ...state.data]
     }));
-  }
+  };
 
   componentDidMount() {
     this.props.navigation.setParams({
@@ -62,20 +63,67 @@ class MyRecipes extends Component {
     });
   }
 
+  _handleDelete = (recipe, index) => {
+    return () => {
+      const recipeToDelete = { ...recipe };
+
+      this.setState(state => {
+        const recipes = [...state.data];
+        recipes.splice(index, 1);
+        return {
+          ...state,
+          data: recipes
+        };
+      });
+
+      Http.delete(`recipes/${recipe.id}`).catch(() => {
+        // on error revert the deleted item on list
+        this.setState(state => {
+          const recipes = [...state.data];
+          recipes.splice(1, 0, recipeToDelete);
+          return {
+            ...state,
+            data: recipes
+          };
+        });
+      });
+    };
+  };
+
+  _renderItem = ({ item: recipe, index }) => {
+    return (
+      <Swipeout
+        key={recipe.id}
+        buttonWidth={100}
+        right={[
+          {
+            text: 'Delete',
+            backgroundColor: Theme.colors.danger,
+            color: Theme.colors.white,
+            onPress: this._handleDelete(recipe, index)
+          }
+        ]}
+      >
+        <MyRecipeCard
+          data={recipe}
+          onPress={() => this.onViewDetailHandler(recipe)}
+        />
+      </Swipeout>
+    );
+  };
+
+  _keyExtractor = item => item.id;
+
   render() {
     const { data: recipes } = this.state;
 
     return (
       <Layout>
-        <ScrollView>
-          {(recipes || []).map(recipe => (
-            <MyRecipeCard
-              key={recipe.id}
-              data={recipe}
-              onPress={() => this.onViewDetailHandler(recipe)}
-            />
-          ))}
-        </ScrollView>
+        <FlatList
+          data={recipes}
+          renderItem={this._renderItem}
+          keyExtractor={this._keyExtractor}
+        />
       </Layout>
     );
   }
