@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Http, Theme } from '../../../Core';
-import { ScrollView, View } from 'react-native';
+import { View, ScrollView } from 'react-native';
 import { normalizeRecipe } from '../Utils';
 import MyRecipeCard from '../Components/MyRecipeCard';
 import HeaderIconButton from '../../../Components/HeaderIconButton';
+import Layout from '../../../Components/Layout';
 
 class MyRecipes extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -21,6 +22,7 @@ class MyRecipes extends Component {
       )
     };
   };
+
   constructor(props) {
     super(props);
 
@@ -29,13 +31,19 @@ class MyRecipes extends Component {
     };
   }
 
-  onNewRecipe = () => {
+  onViewDetailHandler = recipe => {
+    this.props.navigation.push('RecipeDetail', {
+      recipe
+    });
+  };
+
+  onNewRecipeHandler = () => {
     this.props.navigation.push('NewRecipe');
   };
 
   componentDidMount() {
     this.props.navigation.setParams({
-      newRecipe: this.onNewRecipe
+      newRecipe: this.onNewRecipeHandler
     });
     Http.get('user/1/recipes?_page=1&_limit=20').then(x => {
       this.setState(state => ({
@@ -49,11 +57,17 @@ class MyRecipes extends Component {
     const { data: recipes } = this.state;
 
     return (
-      <ScrollView>
-        {(recipes || []).map(recipe => (
-          <MyRecipeCard key={recipe.id} data={recipe} />
-        ))}
-      </ScrollView>
+      <Layout>
+        <ScrollView>
+          {(recipes || []).map(recipe => (
+            <MyRecipeCard
+              key={recipe.id}
+              data={recipe}
+              onPress={() => this.onViewDetailHandler(recipe)}
+            />
+          ))}
+        </ScrollView>
+      </Layout>
     );
   }
 }

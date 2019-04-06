@@ -1,15 +1,28 @@
 import React, { Component } from 'react';
 import { Http } from '../../../Core';
+import Layout from '../../../Components/Layout';
 import RecipesList from '../Components/RecipesList';
 import { normalizeRecipe } from '../Utils';
-import WithRecipeNavigator from '../Hoc/WithRecipeNavigator';
-import { StatusBar } from 'react-native';
-import { SafeAreaView } from 'react-navigation';
 
 class Recipes extends Component {
-  state = {
-    data: []
+  onViewRecipe = recipe => {
+    this.props.navigation.push('RecipeDetail', {
+      recipe
+    });
   };
+
+  onViewCategory = category => {
+    this.props.navigation.push('RecipesByCategory', {
+      category
+    });
+  };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: []
+    };
+  }
 
   componentDidMount() {
     Http.get('recipes?_page=1&_limit=20').then(x => {
@@ -24,16 +37,15 @@ class Recipes extends Component {
     const { data } = this.state;
 
     return (
-      <SafeAreaView>
-        <StatusBar barStyle="dark-content" />
+      <Layout>
         <RecipesList
           data={data}
-          onShowRecipe={this.props.navigateToRecipe}
-          onShowCategory={this.props.navigateToCategory}
+          onShowRecipe={this.onViewRecipe}
+          onShowCategory={this.onViewCategory}
         />
-      </SafeAreaView>
+      </Layout>
     );
   }
 }
 
-export default WithRecipeNavigator(Recipes);
+export default Recipes;

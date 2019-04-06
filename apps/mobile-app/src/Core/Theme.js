@@ -17,6 +17,7 @@ export const Theme = {
     lightGray: '#c1c7cb',
     textLight: '#848d95',
     disabled: '#DBDBDB',
-    muted: '#6c757d'
+    muted: '#6c757d',
+    lighterGray: 'rgba(100,121,143,0.122)'
   }
 };

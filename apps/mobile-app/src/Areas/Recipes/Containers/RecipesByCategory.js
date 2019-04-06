@@ -2,12 +2,34 @@ import React, { Component } from 'react';
 import { Http } from '../../../Core';
 import { normalizeRecipe } from '../Utils';
 import RecipesList from '../Components/RecipesList';
-import WithRecipeNavigator from '../Hoc/WithRecipeNavigator';
 
 class RecipesByCategory extends Component {
-  state = {
-    data: []
+  static navigationOptions = ({ navigation }) => {
+    const { category } = navigation.state.params;
+    return {
+      title: `Category: ${category}`
+    };
   };
+
+  onViewRecipe = recipe => {
+    this.props.navigation.push('RecipeDetail', {
+      recipe
+    });
+  };
+
+  onViewCategory = category => {
+    this.props.navigation.push('RecipesByCategory', {
+      category
+    });
+  };
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      data: []
+    };
+  }
 
   componentDidMount() {
     const { category } = this.props.navigation.state.params;
@@ -25,11 +47,11 @@ class RecipesByCategory extends Component {
     return (
       <RecipesList
         data={data}
-        onShowRecipe={this.props.navigateToRecipe}
-        onShowCategory={this.props.navigateToCategory}
+        onShowRecipe={this.onViewRecipe}
+        onShowCategory={this.onViewCategory}
       />
     );
   }
 }
 
-export default WithRecipeNavigator(RecipesByCategory);
+export default RecipesByCategory;

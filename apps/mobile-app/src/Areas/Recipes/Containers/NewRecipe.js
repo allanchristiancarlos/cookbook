@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { ScrollView, View } from 'react-native';
 import { Text, TextBox, Button, Http } from '../../../Core';
-import WithRecipeNavigator from '../Hoc/WithRecipeNavigator';
+import Layout from '../../../Components/Layout';
 
 class NewRecipe extends Component {
   static navigationOptions = () => {
     return {
       title: 'New Recipe',
       tabBarVisible: false
-    }
-  }
+    };
+  };
   state = {
     name: '',
     cookTime: '',
@@ -88,65 +88,67 @@ class NewRecipe extends Component {
     const { isLoading, name, difficulty, description, cookTime } = this.state;
 
     return (
-      <View
-        style={{
-          flex: 1,
-          flexDirection: 'column'
-        }}
-      >
-        <View style={{ flex: 1 }}>
-          <ScrollView>
-            <View style={{ padding: 20 }}>
-              <View style={{ marginBottom: 10 }}>
-                <Text size="small" muted bold letterCase="upper">
-                  Name
-                </Text>
-                <TextBox value={name} onChangeText={this.onNameChange} />
+      <Layout>
+        <View
+          style={{
+            flex: 1,
+            flexDirection: 'column'
+          }}
+        >
+          <View style={{ flex: 1 }}>
+            <ScrollView>
+              <View style={{ padding: 20 }}>
+                <View style={{ marginBottom: 10 }}>
+                  <Text size="small" muted bold letterCase="upper">
+                    Name
+                  </Text>
+                  <TextBox value={name} onChangeText={this.onNameChange} />
+                </View>
+                <View style={{ marginBottom: 10 }}>
+                  <Text size="small" muted bold letterCase="upper">
+                    Cook Time
+                  </Text>
+                  <TextBox
+                    value={cookTime}
+                    onChangeText={this.onCookTimeChange}
+                  />
+                </View>
+                <View style={{ marginBottom: 10 }}>
+                  <Text size="small" muted bold letterCase="upper">
+                    Difficulty
+                  </Text>
+                  <TextBox
+                    value={difficulty}
+                    onChangeText={this.onDifficultyChange}
+                  />
+                </View>
+                <View style={{ marginBottom: 20 }}>
+                  <Text size="small" muted bold letterCase="upper">
+                    Description
+                  </Text>
+                  <TextBox
+                    value={description}
+                    onChangeText={this.onDescriptionChange}
+                    multiline={true}
+                    lines={6}
+                  />
+                </View>
               </View>
-              <View style={{ marginBottom: 10 }}>
-                <Text size="small" muted bold letterCase="upper">
-                  Cook Time
-                </Text>
-                <TextBox
-                  value={cookTime}
-                  onChangeText={this.onCookTimeChange}
-                />
-              </View>
-              <View style={{ marginBottom: 10 }}>
-                <Text size="small" muted bold letterCase="upper">
-                  Difficulty
-                </Text>
-                <TextBox
-                  value={difficulty}
-                  onChangeText={this.onDifficultyChange}
-                />
-              </View>
-              <View style={{ marginBottom: 20 }}>
-                <Text size="small" muted bold letterCase="upper">
-                  Description
-                </Text>
-                <TextBox
-                  value={description}
-                  onChangeText={this.onDescriptionChange}
-                  multiline={true}
-                  lines={6}
-                />
-              </View>
-            </View>
-          </ScrollView>
+            </ScrollView>
+          </View>
+          <View>
+            <Button
+              disabled={isLoading}
+              onPress={this.onSaveRecipe}
+              kind="primary"
+              size="large"
+              block
+            >
+              {isLoading ? 'Saving Recipe...' : 'Save Recipe'}
+            </Button>
+          </View>
         </View>
-        <View>
-          <Button
-            disabled={isLoading}
-            onPress={this.onSaveRecipe}
-            kind="primary"
-            size="large"
-            block
-          >
-            {isLoading ? 'Saving Recipe...' : 'Save Recipe'}
-          </Button>
-        </View>
-      </View>
+      </Layout>
     );
   }
 }

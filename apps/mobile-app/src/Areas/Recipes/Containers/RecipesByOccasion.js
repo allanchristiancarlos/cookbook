@@ -2,12 +2,34 @@ import React, { Component } from 'react';
 import { Http } from '../../../Core';
 import RecipesList from '../Components/RecipesList';
 import { normalizeRecipe } from '../Utils';
-import WithRecipeNavigator from '../Hoc/WithRecipeNavigator';
 
 class RecipesByOccasion extends Component {
-  state = {
-    data: []
+  static navigationOptions = ({ navigation }) => {
+    const { occasion } = navigation.state.params;
+    return {
+      title: `Occassion: ${occasion}`
+    };
   };
+
+  onViewRecipe = recipe => {
+    this.props.navigation.push('RecipeDetail', {
+      recipe
+    });
+  };
+
+  onViewCategory = category => {
+    this.props.navigation.push('RecipesByCategory', {
+      category
+    });
+  };
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      data: []
+    };
+  }
 
   componentDidMount() {
     const { occasion } = this.props.navigation.state.params;
@@ -25,11 +47,11 @@ class RecipesByOccasion extends Component {
     return (
       <RecipesList
         data={data}
-        onShowRecipe={this.props.navigateToRecipe}
-        onShowCategory={this.props.navigateToCategory}
+        onShowRecipe={this.onViewRecipe}
+        onShowCategory={this.onViewCategory}
       />
     );
   }
 }
 
-export default WithRecipeNavigator(RecipesByOccasion);
+export default RecipesByOccasion;
