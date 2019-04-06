@@ -38,8 +38,17 @@ class MyRecipes extends Component {
   };
 
   onNewRecipeHandler = () => {
-    this.props.navigation.push('NewRecipe');
+    this.props.navigation.push('NewRecipe', {
+      onSavedRecipe: this.onSavedRecipe
+    });
   };
+
+  onSavedRecipe = (recipe) => {
+    this.setState(state => ({
+      ...state,
+      data: [recipe, ...state.data]
+    }));
+  }
 
   componentDidMount() {
     this.props.navigation.setParams({

@@ -35,7 +35,9 @@ class NewRecipe extends Component {
     prepTime: null,
     steps: ['Simmer', 'Fry'],
     ingredients: ['Onion', 'Rings'],
-    userId: 1
+    userId: 1,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString()
   };
 
   onNameChange = name => {
@@ -77,10 +79,16 @@ class NewRecipe extends Component {
     const recipe = { ...this.defaultRecipe, ...form };
 
     Http.post('recipes', recipe).then(response => {
-      this.setState(state => ({
+      this.setState(() => ({
         isLoading: false
       }));
-      this.props.navigateToMyRecipesTab();
+
+      const { onSavedRecipe } = this.props.navigation.state.params;
+
+      if (onSavedRecipe) {
+        onSavedRecipe(response);
+        this.props.navigation.goBack();
+      }
     });
   };
 
