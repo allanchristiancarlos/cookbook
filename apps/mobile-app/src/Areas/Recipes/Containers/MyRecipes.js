@@ -32,8 +32,26 @@ class MyRecipes extends Component {
     };
   }
 
-  onViewDetailHandler = recipe => {
-    this.props.navigation.push('EditRecipeContainer', {
+  _handleEdit = (recipe, index) => {
+    return () => {
+      this.props.navigation.push('EditRecipeContainer', {
+        recipe,
+        onSaveRecipe: updatedRecipe => {
+          this.setState(state => {
+            const recipes = [...state.data];
+            recipes.splice(index, 1, updatedRecipe);
+            return {
+              ...state,
+              data: recipes
+            };
+          });
+        }
+      });
+    };
+  };
+
+  _handleViewRecipe = recipe => {
+    this.props.navigation.push('RecipeDetail', {
       recipe
     });
   };
@@ -95,7 +113,14 @@ class MyRecipes extends Component {
       <Swipeout
         key={recipe.id}
         buttonWidth={100}
+        autoClose={true}
         right={[
+          {
+            text: 'Edit',
+            backgroundColor: Theme.colors.primary,
+            color: Theme.colors.white,
+            onPress: this._handleEdit(recipe, index)
+          },
           {
             text: 'Delete',
             backgroundColor: Theme.colors.danger,
@@ -106,7 +131,7 @@ class MyRecipes extends Component {
       >
         <MyRecipeCard
           data={recipe}
-          onPress={() => this.onViewDetailHandler(recipe)}
+          onPress={() => this._handleViewRecipe(recipe, index)}
         />
       </Swipeout>
     );

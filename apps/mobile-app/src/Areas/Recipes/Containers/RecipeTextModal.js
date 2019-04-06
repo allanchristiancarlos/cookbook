@@ -29,6 +29,13 @@ class RecipeTextModal extends Component {
     this.props.navigation.goBack();
   };
 
+  componentDidMount() {
+    const { initialValue } = this.props.navigation.state.params;
+    this.setState(() => ({
+      result: initialValue
+    }));
+  }
+
   render() {
     const {
       label = 'Input',
@@ -56,7 +63,11 @@ class RecipeTextModal extends Component {
                 {label}
               </Text>
             </View>
-            <TextBox onChangeText={this._handleChangeText} {...textBoxProps} />
+            <TextBox
+              value={result}
+              onChangeText={this._handleChangeText}
+              {...textBoxProps}
+            />
           </View>
           <View>
             <Button
