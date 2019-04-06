@@ -15,7 +15,7 @@ export const TextBox = ({
   value
 }) => {
   const containerStyles = {
-    borderColor: disabled ? colors.disabled : colors.dark,
+    borderColor: disabled ? colors.disabled : '#e2e2e2',
     borderWidth: 1,
     backgroundColor: disabled ? colors.secondary : null
   };

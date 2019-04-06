@@ -33,7 +33,7 @@ class MyRecipes extends Component {
   }
 
   onViewDetailHandler = recipe => {
-    this.props.navigation.push('RecipeDetail', {
+    this.props.navigation.push('EditRecipeContainer', {
       recipe
     });
   };

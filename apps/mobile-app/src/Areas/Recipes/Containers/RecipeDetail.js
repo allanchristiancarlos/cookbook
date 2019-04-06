@@ -206,7 +206,7 @@ class RecipeDetail extends Component {
               ))}
             </List>
           </Section>
-          <Section title="Steps">
+          <Section title="Instructions">
             <List ordered={true}>
               {(steps || []).map((x, index) => (
                 <ListItem key={index}>
@@ -216,15 +216,18 @@ class RecipeDetail extends Component {
             </List>
           </Section>
           <Section title="Categories">
-            <View style={{ flex: 1, flexWrap: 'wrap', flexDirection: 'row' }}>
+            <View
+              style={{ flex: 1, flexWrap: 'wrap', flexDirection: 'row' }}
+            >
               {(relatedCategories || []).map((category, index) => (
-                <View key={index} style={{ marginRight: 6, marginBottom: 6 }}>
+                <View
+                  key={index}
+                  style={{ marginRight: 6, marginBottom: 6 }}
+                >
                   <Chip
                     color={colors.primary}
                     backgroundColor={colors.secondary}
-                    onPress={() =>
-                      this.onCategoryPressedHandler(category)
-                    }
+                    onPress={() => this.onCategoryPressedHandler(category)}
                   >
                     {category}
                   </Chip>
@@ -233,15 +236,18 @@ class RecipeDetail extends Component {
             </View>
           </Section>
           <Section title="Occasions">
-            <View style={{ flex: 1, flexWrap: 'wrap', flexDirection: 'row' }}>
+            <View
+              style={{ flex: 1, flexWrap: 'wrap', flexDirection: 'row' }}
+            >
               {(occasions || []).map((occasion, index) => (
-                <View key={index} style={{ marginRight: 6, marginBottom: 6 }}>
+                <View
+                  key={index}
+                  style={{ marginRight: 6, marginBottom: 6 }}
+                >
                   <Chip
                     color={colors.primary}
                     backgroundColor={colors.secondary}
-                    onPress={() =>
-                      this.onOccasionPressedHandler(occasion)
-                    }
+                    onPress={() => this.onOccasionPressedHandler(occasion)}
                   >
                     {occasion}
                   </Chip>

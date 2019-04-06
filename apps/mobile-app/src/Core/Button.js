@@ -49,12 +49,23 @@ const BaseButton = props => {
     borderRadius: 0
   };
 
-  const isBare = look === 'bare';
-
-  if (isBare === true) {
-    buttonTextStyles.color = background || colors.textColor;
-  } else {
-    buttonStyles.backgroundColor = background || colors.secondary;
+  switch (look) {
+    case 'bare': {
+      buttonTextStyles.color = background || colors.textColor;
+      break;
+    }
+    case 'outline': {
+      buttonTextStyles.color = background || colors.textColor;
+      if (background === colors.secondary) {
+        buttonTextStyles.color = colors.textColor;
+      }
+      buttonStyles.borderWidth = 1;
+      buttonStyles.borderColor = background || colors.textColor;
+      break;
+    }
+    default: {
+      buttonStyles.backgroundColor = background || colors.secondary;
+    }
   }
 
   let buttonTextWrapperStyles = {
@@ -80,7 +91,7 @@ const BaseButton = props => {
     if (onPress) {
       onPress();
     }
-  }
+  };
 
   let iconStyles = buttonTextStyles;
   let iconWrapperStyles = {
@@ -116,7 +127,7 @@ BaseButton.propTypes = {
   background: PropTypes.string,
   color: PropTypes.string,
   block: PropTypes.bool,
-  look: PropTypes.oneOf(['flat', 'bare']),
+  look: PropTypes.oneOf(['flat', 'bare', 'outline']),
   size: PropTypes.oneOf(['small', 'default', 'large']),
   onClick: PropTypes.func
 };
