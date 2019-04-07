@@ -2,15 +2,10 @@ import React, { Component } from 'react';
 import { View, ScrollView } from 'react-native';
 import Layout from '../../../Components/Layout';
 import { Section } from '../../../Components/Section';
+import FormLabel from '../../../Components/FormLabel';
 import ToggleButton from '../../../Components/ToggleButton';
-import {
-  Text,
-  TextBox,
-  Button,
-  Image,
-  TappableText,
-  Http
-} from '../../../Core';
+import RecipeEditableList from '../Components/RecipeEditableList';
+import { TextBox, Button, Image, Http } from '../../../Core';
 import { ImagePicker, Permissions } from 'expo';
 
 const IMAGE_PICKER_OPTIONS = {
@@ -20,14 +15,14 @@ const IMAGE_PICKER_OPTIONS = {
   aspect: [4, 3]
 };
 
-class EditRecipeContainer extends Component {
+class EditRecipe extends Component {
   static navigationOptions = () => {
     return {
       title: 'Edit Recipe'
     };
   };
 
-  static noImageUrl = 'https://placehold.it/100x100?text=no%20image';
+  noImageUrl = 'https://placehold.it/100x100?text=no%20image';
 
   constructor(props) {
     super(props);
@@ -35,13 +30,14 @@ class EditRecipeContainer extends Component {
     this.state = {
       recipe: {
         difficulty: 'Easy',
-        imageUrl: EditRecipeContainer.noImageUrl,
+        imageUrl: '',
         ingredients: [],
         steps: [],
         relatedCategories: [],
         occasions: [],
         name: '',
-        cookTime: ''
+        cookTime: '',
+        userId: 1
       },
       isLoading: false
     };
@@ -58,15 +54,30 @@ class EditRecipeContainer extends Component {
     }
   }
 
+  _handleChangeNewIngredient = newIngredient => {
+    this.setState(state => ({
+      ...state,
+      newIngredient
+    }));
+  };
+
   _handleAddIngredient = () => {
-    this.props.navigation.navigate('RecipeTextModal', {
-      title: 'Add Ingredient',
-      label: 'Ingredient',
-      button: 'Add',
-      onResult: result => {
-        this._addStateListItem('ingredients', result);
+    if (!this.state.newIngredient) {
+      return;
+    }
+
+    this._addStateListItem('ingredients', this.state.newIngredient);
+    this.setState(
+      state => ({
+        ...state,
+        newIngredient: ''
+      }),
+      () => {
+        setTimeout(() => {
+          this.newIngredientInput.focus();
+        });
       }
-    });
+    );
   };
 
   _handleEditIngredient = (ingredient, index) => {
@@ -86,14 +97,28 @@ class EditRecipeContainer extends Component {
   };
 
   _handleAddOccasion = () => {
-    this.props.navigation.navigate('RecipeTextModal', {
-      title: 'Add Occasion',
-      label: 'Occasion',
-      button: 'Add',
-      onResult: result => {
-        this._addStateListItem('occasions', result);
+    if (!this.state.newOccasion) {
+      return;
+    }
+    this._addStateListItem('occasions', this.state.newOccasion);
+    this.setState(
+      state => ({
+        ...state,
+        newOccasion: ''
+      }),
+      () => {
+        setTimeout(() => {
+          this.newOccasionInput.focus();
+        });
       }
-    });
+    );
+  };
+
+  _handleChangeNewOccasion = newOccasion => {
+    this.setState(state => ({
+      ...state,
+      newOccasion
+    }));
   };
 
   _handleEditOccasion = (Occasion, index) => {
@@ -112,15 +137,29 @@ class EditRecipeContainer extends Component {
     this._deleteStateListItem('occasions', index);
   };
 
+  _handleChangeNewCategory = newCategory => {
+    this.setState(state => ({
+      ...state,
+      newCategory
+    }));
+  };
+
   _handleAddCategory = () => {
-    this.props.navigation.navigate('RecipeTextModal', {
-      title: 'Add Category',
-      label: 'Category',
-      button: 'Add',
-      onResult: result => {
-        this._addStateListItem('relatedCategories', result);
+    if (!this.state.newCategory) {
+      return;
+    }
+    this._addStateListItem('relatedCategories', this.state.newCategory);
+    this.setState(
+      state => ({
+        ...state,
+        newCategory: ''
+      }),
+      () => {
+        setTimeout(() => {
+          this.newCategoryInput.focus();
+        });
       }
-    });
+    );
   };
 
   _handleEditCategory = (Category, index) => {
@@ -139,16 +178,29 @@ class EditRecipeContainer extends Component {
     this._deleteStateListItem('relatedCategories', index);
   };
 
+  _handleChangeNewInstruction = newInstruction => {
+    this.setState(state => ({
+      ...state,
+      newInstruction
+    }));
+  };
+
   _handleAddInstruction = () => {
-    this.props.navigation.navigate('RecipeTextModal', {
-      title: 'Add Instruction',
-      label: 'Instruction',
-      button: 'Add',
-      multiline: true,
-      onResult: result => {
-        this._addStateListItem('steps', result);
+    if (!this.state.newInstruction) {
+      return;
+    }
+    this._addStateListItem('steps', this.state.newInstruction);
+    this.setState(
+      state => ({
+        ...state,
+        newInstruction: ''
+      }),
+      () => {
+        setTimeout(() => {
+          this.newInstructionInput.focus();
+        }, 100);
       }
-    });
+    );
   };
 
   _handleEditInstruction = (instruction, index) => {
@@ -186,6 +238,16 @@ class EditRecipeContainer extends Component {
       recipe: {
         ...state.recipe,
         name: recipe
+      }
+    }));
+  };
+
+  _handleChangeDescription = description => {
+    this.setState(state => ({
+      ...state,
+      recipe: {
+        ...state.recipe,
+        description
       }
     }));
   };
@@ -265,17 +327,17 @@ class EditRecipeContainer extends Component {
       });
   };
 
-  _handleUpdateRecipe = () => {
-    const { recipe, onSaveRecipe } = this.props.navigation.state.params;
-    const updatedRecipe = { ...this.state.recipe };
-    updatedRecipe.updatedAt = new Date().toISOString();
+  _handleSaveRecipe = () => {
+    const { onSavedRecipe } = this.props.navigation.state.params;
+    const newRecipe = { ...this.state.recipe };
+    newRecipe.updatedAt = new Date().toISOString();
     this.setState(state => ({
       ...state,
       isLoading: true
     }));
-    Http.patch(`recipes/${recipe.id}`, updatedRecipe).then(x => {
-      if (onSaveRecipe) {
-        onSaveRecipe(x);
+    Http.patch(`recipes/${newRecipe.id}`, newRecipe).then(x => {
+      if (onSavedRecipe) {
+        onSavedRecipe(x);
       }
       this.setState(state => ({
         ...state,
@@ -287,7 +349,14 @@ class EditRecipeContainer extends Component {
 
   render() {
     const difficulties = ['Easy', 'Moderate', 'Difficult'];
-    const { recipe, isLoading } = this.state;
+    const {
+      recipe,
+      isLoading,
+      newIngredient,
+      newInstruction,
+      newOccasion,
+      newCategory
+    } = this.state;
     const {
       name,
       difficulty,
@@ -296,33 +365,44 @@ class EditRecipeContainer extends Component {
       ingredients,
       steps: instructions,
       relatedCategories: categories,
-      occasions
+      occasions,
+      description
     } = recipe;
+
+    const hasName = !!name;
+    const hasIngredients = (ingredients || []).length > 0;
+    const hasDifficulty = !!difficulty;
+    const hasCookTime = !!cookTime;
+
+    const isValid = hasName && hasIngredients && hasDifficulty && hasCookTime;
+
     return (
       <Layout>
         <View style={{ flexDirection: 'column', flex: 1 }}>
           <View style={{ flex: 1 }}>
-            <ScrollView>
+            <ScrollView keyboardShouldPersistTaps="always">
               <View style={{ paddingBottom: 20, paddingHorizontal: 20 }}>
                 <Section title="Details">
                   <View style={{ marginBottom: 20 }}>
-                    <View style={{ marginBottom: 10 }}>
-                      <Text size="small" bold letterCase="upper">
-                        Recipe
-                      </Text>
-                    </View>
+                    <FormLabel required>Recipe</FormLabel>
                     <TextBox
+                      ref={input => (this.input = input)}
                       value={name}
                       onChangeText={this._handleChangeRecipe}
                       placeholder="Ravioli Pasta..."
                     />
                   </View>
                   <View style={{ marginBottom: 20 }}>
-                    <View style={{ marginBottom: 10 }}>
-                      <Text size="small" bold letterCase="upper">
-                        Photo
-                      </Text>
-                    </View>
+                    <FormLabel>Description</FormLabel>
+                    <TextBox
+                      value={description}
+                      multiline={true}
+                      lines={6}
+                      onChangeText={this._handleChangeDescription}
+                    />
+                  </View>
+                  <View style={{ marginBottom: 20 }}>
+                    <FormLabel required>Photo</FormLabel>
                     <View
                       style={{
                         flex: 1,
@@ -331,7 +411,10 @@ class EditRecipeContainer extends Component {
                       }}
                     >
                       <View style={{ marginRight: 10 }}>
-                        <Image size="thumbnail" url={imageUrl} />
+                        <Image
+                          size="thumbnail"
+                          url={imageUrl || this.noImageUrl}
+                        />
                       </View>
                       <View style={{ flex: 1 }}>
                         <Button
@@ -354,11 +437,7 @@ class EditRecipeContainer extends Component {
                     </View>
                   </View>
                   <View style={{ marginBottom: 20 }}>
-                    <View style={{ marginBottom: 10 }}>
-                      <Text size="small" bold letterCase="upper">
-                        Difficulty
-                      </Text>
-                    </View>
+                    <FormLabel required>Difficulty</FormLabel>
                     <View style={{ flex: 1, flexDirection: 'row' }}>
                       {difficulties.map((item, index) => (
                         <View key={index} style={{ flex: 1 }}>
@@ -374,11 +453,7 @@ class EditRecipeContainer extends Component {
                     </View>
                   </View>
                   <View>
-                    <View style={{ marginBottom: 10 }}>
-                      <Text size="small" bold letterCase="upper">
-                        Cook Time
-                      </Text>
-                    </View>
+                    <FormLabel required>Cook Time</FormLabel>
                     <TextBox
                       value={cookTime}
                       onChangeText={this._handleChangeCookTime}
@@ -386,22 +461,31 @@ class EditRecipeContainer extends Component {
                     />
                   </View>
                 </Section>
-                <Section title="Ingredients">
+                <Section title="Ingredients" required>
                   <View style={{ marginBottom: 10 }}>
                     <RecipeEditableList
                       items={ingredients}
                       onEdit={this._handleEditIngredient}
                       onDelete={this._handleDeleteIngredient}
                     />
+                    <View style={{ flex: 1, flexDirection: 'row' }}>
+                      <View style={{ flex: 1 }}>
+                        <TextBox
+                          ref={input => (this.newIngredientInput = input)}
+                          value={newIngredient}
+                          onChangeText={this._handleChangeNewIngredient}
+                          onSubmitEditing={this._handleAddIngredient}
+                          placeholder="Enter ingredient here..."
+                        />
+                      </View>
+                      <Button
+                        disabled={!newIngredient}
+                        onPress={this._handleAddIngredient}
+                        icon="md-add"
+                        kind="primary"
+                      />
+                    </View>
                   </View>
-                  <Button
-                    onPress={this._handleAddIngredient}
-                    icon="md-add"
-                    look="bare"
-                    kind="primary"
-                  >
-                    Add Ingredient
-                  </Button>
                 </Section>
                 <Section title="Instructions">
                   <View style={{ marginBottom: 10 }}>
@@ -410,15 +494,38 @@ class EditRecipeContainer extends Component {
                       onEdit={this._handleEditInstruction}
                       onDelete={this._handleDeleteInstruction}
                     />
+                    <View style={{ marginBottom: 5 }}>
+                      <TextBox
+                        value={newInstruction}
+                        ref={input => (this.newInstructionInput = input)}
+                        multiline={true}
+                        lines={6}
+                        onChangeText={this._handleChangeNewInstruction}
+                        placeholder={
+                          instructions.length < 1
+                            ? 'Enter first instruction...'
+                            : 'Enter another instruction...'
+                        }
+                      />
+                    </View>
+                    <View
+                      style={{
+                        flex: 1,
+                        flexDirection: 'row',
+                        justifyContent: 'flex-end'
+                      }}
+                    >
+                      <View>
+                        <Button
+                          disabled={!newInstruction}
+                          onPress={this._handleAddInstruction}
+                          kind="primary"
+                        >
+                          Add Instruction
+                        </Button>
+                      </View>
+                    </View>
                   </View>
-                  <Button
-                    onPress={this._handleAddInstruction}
-                    icon="md-add"
-                    look="bare"
-                    kind="primary"
-                  >
-                    Add Instruction
-                  </Button>
                 </Section>
                 <Section title="Categories">
                   <View style={{ marginBottom: 10 }}>
@@ -427,15 +534,24 @@ class EditRecipeContainer extends Component {
                       onEdit={this._handleEditCategory}
                       onDelete={this._handleDeleteCategory}
                     />
+                    <View style={{ flex: 1, flexDirection: 'row' }}>
+                      <View style={{ flex: 1 }}>
+                        <TextBox
+                          ref={input => (this.newCategoryInput = input)}
+                          value={newCategory}
+                          onChangeText={this._handleChangeNewCategory}
+                          onSubmitEditing={this._handleAddCategory}
+                          placeholder="Enter category here..."
+                        />
+                      </View>
+                      <Button
+                        disabled={!newCategory}
+                        onPress={this._handleAddCategory}
+                        icon="md-add"
+                        kind="primary"
+                      />
+                    </View>
                   </View>
-                  <Button
-                    onPress={this._handleAddCategory}
-                    icon="md-add"
-                    look="bare"
-                    kind="primary"
-                  >
-                    Add Category
-                  </Button>
                 </Section>
                 <Section title="Occasions">
                   <View style={{ marginBottom: 10 }}>
@@ -444,23 +560,32 @@ class EditRecipeContainer extends Component {
                       onEdit={this._handleEditOccasion}
                       onDelete={this._handleDeleteOccasion}
                     />
+                    <View style={{ flex: 1, flexDirection: 'row' }}>
+                      <View style={{ flex: 1 }}>
+                        <TextBox
+                          ref={input => (this.newOccasionInput = input)}
+                          value={newOccasion}
+                          onChangeText={this._handleChangeNewOccasion}
+                          onSubmitEditing={this._handleAddOccasion}
+                          placeholder="Enter occasion here..."
+                        />
+                      </View>
+                      <Button
+                        disabled={!newOccasion}
+                        onPress={this._handleAddOccasion}
+                        icon="md-add"
+                        kind="primary"
+                      />
+                    </View>
                   </View>
-                  <Button
-                    onPress={this._handleAddOccasion}
-                    icon="md-add"
-                    look="bare"
-                    kind="primary"
-                  >
-                    Add Occasion
-                  </Button>
                 </Section>
               </View>
             </ScrollView>
           </View>
           <View>
             <Button
-              disabled={isLoading}
-              onPress={this._handleUpdateRecipe}
+              disabled={isLoading || !isValid}
+              onPress={this._handleSaveRecipe}
               block
               size="large"
               kind="primary"
@@ -474,36 +599,4 @@ class EditRecipeContainer extends Component {
   }
 }
 
-function RecipeEditableList(props) {
-  const { items, onEdit, onDelete, renderItem } = props;
-  return (
-    <React.Fragment>
-      {items.map((item, index) => (
-        <View
-          key={index}
-          style={{
-            paddingHorizontal: 10,
-            marginBottom: 10,
-            flexDirection: 'row',
-            flexWrap: 'wrap'
-          }}
-        >
-          <View style={{ marginRight: 10 }}>
-            {renderItem ? renderItem() : <Text>- {item}</Text>}
-          </View>
-          <View style={{ flexDirection: 'row' }}>
-            <TappableText onPress={() => onEdit(item, index)}>
-              Edit
-            </TappableText>
-            <View style={{ marginHorizontal: 5 }}>
-              <Text muted>|</Text>
-            </View>
-            <TappableText onPress={() => onDelete(index)}>Delete</TappableText>
-          </View>
-        </View>
-      ))}
-    </React.Fragment>
-  );
-}
-
-export default EditRecipeContainer;
+export default EditRecipe;

@@ -34,9 +34,9 @@ class MyRecipes extends Component {
 
   _handleEdit = (recipe, index) => {
     return () => {
-      this.props.navigation.push('EditRecipeContainer', {
+      this.props.navigation.push('EditRecipe', {
         recipe,
-        onSaveRecipe: updatedRecipe => {
+        onSavedRecipe: updatedRecipe => {
           this.setState(state => {
             const recipes = [...state.data];
             recipes.splice(index, 1, updatedRecipe);

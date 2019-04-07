@@ -5,7 +5,7 @@ import RecipesByCategory from '../Areas/Recipes/Containers/RecipesByCategory';
 import RecipesByOccasion from '../Areas/Recipes/Containers/RecipesByOccasion';
 import RateRecipe from '../Areas/Recipes/Containers/RateRecipe';
 import RecipeAddComment from '../Areas/Recipes/Containers/RecipeAddComment';
-import EditRecipeContainer from '../Areas/Recipes/Containers/EditRecipe';
+import EditRecipe from '../Areas/Recipes/Containers/EditRecipe';
 import RecipeDetail from '../Areas/Recipes/Containers/RecipeDetail';
 import RecipeTextModal from '../Areas/Recipes/Containers/RecipeTextModal';
 
@@ -18,7 +18,7 @@ const MyRecipesNavigator = createStackNavigator({
   RecipesByCategory,
   RecipesByOccasion,
   RecipeTextModal,
-  EditRecipeContainer
+  EditRecipe
 });
 
 MyRecipesNavigator.navigationOptions = ({ navigation }) => {
@@ -29,7 +29,7 @@ MyRecipesNavigator.navigationOptions = ({ navigation }) => {
       'RateRecipe',
       'RecipeAddComment',
       'RecipeTextModal',
-      'EditRecipeContainer'
+      'EditRecipe'
     ];
     navigation.state.routes.map(route => {
       if (routesWithoutTab.indexOf(route.routeName) !== -1) {
