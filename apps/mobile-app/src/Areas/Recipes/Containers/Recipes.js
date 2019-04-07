@@ -5,6 +5,12 @@ import RecipesList from '../Components/RecipesList';
 import { normalizeRecipe } from '../Utils';
 
 class Recipes extends Component {
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: 'Recipes'
+    };
+  };
+  
   onViewRecipe = recipe => {
     this.props.navigation.push('RecipeDetail', {
       recipe

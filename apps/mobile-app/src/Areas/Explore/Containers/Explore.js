@@ -1,9 +1,53 @@
 import React, { Component } from 'react';
-import { Http } from '../../../Core';
+import { View, TextInput } from 'react-native';
+import { Http, Theme } from '../../../Core';
 import { normalizeRecipe } from '../../Recipes/Utils';
 import RecipesList from '../../Recipes/Components/RecipesList';
+import HeaderIconButton from '../../../Components/HeaderIconButton';
 
 class Explore extends Component {
+  static navigationOptions = ({ navigation }) => {
+    return {
+      headerLeftContainerStyle: {
+        flex: 1,
+        width: '100%'
+      },
+      headerLeft: (
+        <View
+          style={{
+            flex: 1,
+            flexDirection: 'row',
+            paddingHorizontal: 20,
+            alignItems: 'center'
+          }}
+        >
+          <View style={{ flex: 1 }}>
+            <TextInput
+              onChangeText={navigation.getParam('onChangeText')}
+              onSubmitEditing={navigation.getParam('onSearch')}
+              placeholder="Search recipes here..."
+              value={navigation.getParam('keyword')}
+              style={{
+                height: 32,
+                paddingVertical: 3,
+                paddingHorizontal: 8,
+                borderRadius: 2,
+                fontWeight: '500',
+                fontSize: Theme.fontSizes.large
+              }}
+            />
+          </View>
+          <View style={{ marginLeft: -22 }}>
+            <HeaderIconButton
+              onPress={navigation.getParam('onClear')}
+              size={24}
+              icon="md-close"
+            />
+          </View>
+        </View>
+      )
+    };
+  };
   constructor(props) {
     super(props);
 
@@ -12,7 +56,7 @@ class Explore extends Component {
       keyword: ''
     };
 
-    this.testRef = React.createRef();
+    this.recipesListRef = React.createRef();
   }
 
   onSearch = ({ nativeEvent }) => {
@@ -22,7 +66,7 @@ class Explore extends Component {
         ...state,
         data: x.map(t => normalizeRecipe(t))
       }));
-      this.testRef.current.scrollToTop();
+      this.recipesListRef.current.scrollToTop();
     });
   };
 
@@ -34,6 +78,20 @@ class Explore extends Component {
     this.props.navigation.setParams({
       ...this.props.navigation.state.params,
       keyword: ''
+    });
+  };
+
+  onViewRecipe = recipe => {
+    console.log({recipe});  
+    this.props.navigation.push('RecipeDetail', {
+      recipe
+    });
+  };
+
+  onViewCategory = category => {
+    console.log({ category });
+    this.props.navigation.push('RecipesByCategory', {
+      category
     });
   };
 
@@ -62,10 +120,10 @@ class Explore extends Component {
 
     return (
       <RecipesList
-        ref={this.testRef}
+        ref={this.recipesListRef}
         data={data}
-        onShowRecipe={this.props.navigateToRecipe}
-        onShowCategory={this.props.navigateToCategory}
+        onShowRecipe={this.onViewRecipe}
+        onShowCategory={this.onViewCategory}
       />
     );
   }

@@ -83,10 +83,6 @@ class RecipeDetail extends Component {
     });
   };
 
-  onRateRecipeHandler = () => {
-    this.onRateHandler(1);
-  };
-
   onToggleFavorite = () => {
     let { isFavorite } = this.state;
     const { favorite, recipe } = this.state;
@@ -278,11 +274,7 @@ class RecipeDetail extends Component {
             </Section>
           ) : null}
 
-          <Section
-            title="Rating"
-            onAction={this.onRateRecipeHandler}
-            action="Rate this recipe"
-          >
+          <Section title="Rating Recipe">
             <Rating
               onPress={this.onRateHandler}
               readOnly={true}
