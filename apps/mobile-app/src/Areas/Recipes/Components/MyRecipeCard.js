@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { TouchableHighlight, View } from 'react-native';
 import { Image, Text, Theme } from '../../../Core';
-import { RecipeRatingChip } from './RecipeRatingChip';
+import Rating from '../../../Components/Rating';
 
 const { colors } = Theme;
 
@@ -14,18 +14,6 @@ class MyRecipeCard extends Component {
       if (onPress) {
         onPress();
       }
-    };
-
-    const renderRating = () => {
-      if (!rating) {
-        return;
-      }
-
-      return (
-        <View>
-          <RecipeRatingChip rating={rating} />
-        </View>
-      );
     };
 
     return (
@@ -49,9 +37,13 @@ class MyRecipeCard extends Component {
           </View>
           <View style={{ flex: 1 }}>
             <View style={{ marginBottom: 10, maxHeight: 35 }}>
-              <Text bold size="large">{name}</Text>
+              <Text bold>
+                {name}
+              </Text>
             </View>
-            <View>{renderRating()}</View>
+            <View>
+              <Rating readOnly={true} rating={rating} size={20} />
+            </View>
           </View>
         </View>
       </TouchableHighlight>

@@ -62,6 +62,13 @@ class Rating extends Component {
     }));
   };
 
+  componentDidMount() {
+    this.setState(state => ({
+      ...state,
+      rating: this.props.rating
+    }));
+  }
+
   componentWillReceiveProps({ rating }) {
     this.setState(state => ({
       ...state,
