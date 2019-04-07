@@ -274,7 +274,7 @@ class RecipeDetail extends Component {
             </Section>
           ) : null}
 
-          <Section title="Rating Recipe">
+          <Section title="Rate Recipe">
             <Rating
               onPress={this.onRateHandler}
               readOnly={true}

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Text, Button, TextBox, Http } from '../../../Core';
 import { View } from 'react-native';
+import FormLabel from '../../../Components/FormLabel';
 
 class RecipeAddComment extends Component {
   static navigationOptions = {
@@ -10,7 +11,7 @@ class RecipeAddComment extends Component {
   onSaveHandler = () => {
     const { recipe, onCommentSaved } = this.props.navigation.state.params;
     const { id } = recipe;
-    this.setState((state) => ({
+    this.setState(state => ({
       ...state,
       isLoading: true
     }));
@@ -20,7 +21,7 @@ class RecipeAddComment extends Component {
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     }).then(x => {
-      this.setState((state) => ({
+      this.setState(state => ({
         ...state,
         isLoading: false
       }));
@@ -45,8 +46,12 @@ class RecipeAddComment extends Component {
     };
   }
 
+  componentDidMount() {
+  }
+
   render() {
-    const { isLoading = false } = this.state;
+    const { isLoading = false, comment } = this.state;
+    const isValid = !!comment;
     return (
       <View
         style={{
@@ -55,15 +60,10 @@ class RecipeAddComment extends Component {
         }}
       >
         <View style={{ flex: 1, padding: 20 }}>
-          <View
-            style={{
-              marginBottom: 20
-            }}
-          >
-            <Text muted>Comment</Text>
-          </View>
+          <FormLabel required>Comment</FormLabel>
           <View>
             <TextBox
+              autoFocus={true}
               onChangeText={this.onChangeCommentHandler}
               multiline={true}
               lines={8}
@@ -72,7 +72,7 @@ class RecipeAddComment extends Component {
         </View>
         <View>
           <Button
-            disabled={isLoading}
+            disabled={isLoading || !isValid}
             onPress={this.onSaveHandler}
             kind="primary"
             size="large"
