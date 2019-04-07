@@ -3,9 +3,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from 'react-navigation';
 import RecipesNavigator from './RecipesNavigator';
 import CategoriesNavigator from './CategoriesNavigator';
-import NewRecipeNavigator from './NewRecipeNavigator';
 import MyRecipesNavigator from './MyRecipesNavigator';
-import ExploreNavigator from './ExploreNavigator';
+import SearchNavigator from './SearchNavigator';
 import { Theme } from '../Core';
 
 const { colors } = Theme;
@@ -21,27 +20,13 @@ const AppTabNavigator = createBottomTabNavigator(
         )
       })
     },
-    ExploreTab: {
-      screen: ExploreNavigator,
+    SearchTab: {
+      screen: SearchNavigator,
       navigationOptions: () => ({
-        title: 'Explore',
+        title: 'Search',
         tabBarIcon: ({ tintColor }) => (
-          <Ionicons name="md-compass" size={24} style={{ color: tintColor }} />
+          <Ionicons name="md-search" size={24} style={{ color: tintColor }} />
         )
-      })
-    },
-    NewRecipe: {
-      screen: NewRecipeNavigator,
-      navigationOptions: () => ({
-        title: 'New Recipe',
-        tabBarIcon: ({ tintColor }) => (
-          <Ionicons
-            name="md-add-circle-outline"
-            size={24}
-            style={{ color: tintColor }}
-          />
-        ),
-        tabBarVisible: false
       })
     },
     CategoriesTab: {

@@ -5,7 +5,7 @@ import { normalizeRecipe } from '../../Recipes/Utils';
 import RecipesList from '../../Recipes/Components/RecipesList';
 import HeaderIconButton from '../../../Components/HeaderIconButton';
 
-class Explore extends Component {
+class Search extends Component {
   static navigationOptions = ({ navigation }) => {
     return {
       headerLeftContainerStyle: {
@@ -23,6 +23,7 @@ class Explore extends Component {
         >
           <View style={{ flex: 1 }}>
             <TextInput
+              autoFocus={true}
               onChangeText={navigation.getParam('onChangeText')}
               onSubmitEditing={navigation.getParam('onSearch')}
               placeholder="Search recipes here..."
@@ -82,14 +83,12 @@ class Explore extends Component {
   };
 
   onViewRecipe = recipe => {
-    console.log({recipe});  
     this.props.navigation.push('RecipeDetail', {
       recipe
     });
   };
 
   onViewCategory = category => {
-    console.log({ category });
     this.props.navigation.push('RecipesByCategory', {
       category
     });
@@ -129,4 +128,4 @@ class Explore extends Component {
   }
 }
 
-export default Explore;
+export default Search;
