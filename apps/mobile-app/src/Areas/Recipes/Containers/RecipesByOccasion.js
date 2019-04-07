@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Http } from '../../../Core';
-import RecipesList from '../Components/RecipesList';
-import normalizeRecipe from '../Functions/normalizeRecipe';
+import Layout from '../../../Components/Layout';
+import RecipesFlatList from '../Components/RecipesFlatList';
+import RecipeCard from '../Components/RecipeCard';
 
 class RecipesByOccasion extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -23,33 +23,25 @@ class RecipesByOccasion extends Component {
     });
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      data: []
-    };
-  }
-
-  componentDidMount() {
-    const { occasion } = this.props.navigation.state.params;
-    Http.get(`recipes?_limit=10&occasions_like=${occasion}`).then(({data: x}) => {
-      this.setState(state => ({
-        ...state,
-        data: x.map(t => normalizeRecipe(t))
-      }));
-    });
-  }
+  _renderItem = ({ item: recipe }) => {
+    return (
+      <RecipeCard
+        data={recipe}
+        onPress={() => this.onViewRecipe(recipe)}
+        onCategoryPress={this.onViewCategory}
+      />
+    );
+  };
 
   render() {
-    const { data } = this.state;
-
+    const { occasion } = this.props.navigation.state.params;
     return (
-      <RecipesList
-        data={data}
-        onShowRecipe={this.onViewRecipe}
-        onShowCategory={this.onViewCategory}
-      />
+      <Layout>
+        <RecipesFlatList
+          url={`recipes?occasions_like=${occasion}`}
+          renderItem={this._renderItem}
+        />
+      </Layout>
     );
   }
 }

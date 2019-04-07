@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import { FlatList, View } from 'react-native';
-import { Http, Text } from '../../../Core';
 import Layout from '../../../Components/Layout';
 import RecipesFlatList from '../Components/RecipesFlatList';
-import { RecipeCard } from '../Components/RecipeCard';
-import normalizeRecipe from '../Functions/normalizeRecipe';
+import RecipeCard from '../Components/RecipeCard';
 
 class Recipes extends Component {
   static navigationOptions = ({ navigation }) => {

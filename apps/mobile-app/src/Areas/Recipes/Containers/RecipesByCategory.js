@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Http } from '../../../Core';
-import normalizeRecipe from '../Functions/normalizeRecipe';
-import RecipesList from '../Components/RecipesList';
+import Layout from '../../../Components/Layout';
+import RecipesFlatList from '../Components/RecipesFlatList';
+import RecipeCard from '../Components/RecipeCard';
 
 class RecipesByCategory extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -23,33 +23,25 @@ class RecipesByCategory extends Component {
     });
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      data: []
-    };
-  }
-
-  componentDidMount() {
-    const { category } = this.props.navigation.state.params;
-    Http.get(`recipes?_limit=10&relatedCategories_like=${category}`).then(({ data: x}) => {
-      this.setState(state => ({
-        ...state,
-        data: x.map(t => normalizeRecipe(t))
-      }));
-    });
-  }
+  _renderItem = ({ item: recipe }) => {
+    return (
+      <RecipeCard
+        data={recipe}
+        onPress={() => this.onViewRecipe(recipe)}
+        onCategoryPress={this.onViewCategory}
+      />
+    );
+  };
 
   render() {
-    const { data } = this.state;
-
+    const { category } = this.props.navigation.state.params;
     return (
-      <RecipesList
-        data={data}
-        onShowRecipe={this.onViewRecipe}
-        onShowCategory={this.onViewCategory}
-      />
+      <Layout>
+        <RecipesFlatList
+          url={`recipes?relatedCategories_like=${category}`}
+          renderItem={this._renderItem}
+        />
+      </Layout>
     );
   }
 }

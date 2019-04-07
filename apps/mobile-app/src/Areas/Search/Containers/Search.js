@@ -3,7 +3,7 @@ import { View, TextInput } from 'react-native';
 import { Theme } from '../../../Core';
 import Layout from '../../../Components/Layout';
 import RecipesFlatList from '../../Recipes/Components/RecipesFlatList';
-import { RecipeCard } from '../../Recipes/Components/RecipeCard';
+import RecipeCard from '../../Recipes/Components/RecipeCard';
 import HeaderIconButton from '../../../Components/HeaderIconButton';
 
 class Search extends Component {
