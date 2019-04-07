@@ -14,6 +14,7 @@ export const Text = props => {
     letterCase,
     color,
     muted = false,
+    danger = false,
     centered
   } = props;
 
@@ -35,6 +36,10 @@ export const Text = props => {
 
   if (muted) {
     style.color = colors.muted;
+  }
+
+  if (danger) {
+    style.color = colors.danger;
   }
 
   if (centered) {

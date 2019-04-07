@@ -46,7 +46,8 @@ const BaseButton = props => {
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 12,
-    borderRadius: 0
+    borderRadius: 0,
+    minWidth: 40
   };
 
   switch (look) {

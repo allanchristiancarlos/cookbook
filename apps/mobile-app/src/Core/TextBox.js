@@ -1,61 +1,74 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { TextInput, View } from 'react-native';
 import { Theme } from './Theme';
 import { Text } from './Text';
 
 const { colors } = Theme;
 
-export const TextBox = ({
-  defaultValue,
-  disabled,
-  placeholder,
-  lines = 1,
-  multiline = false,
-  onChangeText,
-  value
-}) => {
-  const containerStyles = {
-    borderColor: disabled ? colors.disabled : '#e2e2e2',
-    borderWidth: 1,
-    backgroundColor: disabled ? colors.secondary : null
-  };
-
-  const inputStyles = {
-    color: disabled ? colors.textLight : colors.textColor,
-    paddingHorizontal: 10
-  };
-  if (multiline === false) {
-    inputStyles.height = 36;
-  } else {
-    inputStyles.paddingVertical = 10;
+export class TextBox extends Component {
+  focus() {
+    if (this.input) {
+      this.input.focus();
+    }
   }
 
-  const onChangeTextHandler = e => {
-    if (!onChangeText) {
-      return;
+  render() {
+    const {
+      defaultValue,
+      disabled,
+      placeholder,
+      lines = 1,
+      multiline = false,
+      onChangeText,
+      value,
+      ...otherProps
+    } = this.props;
+
+    const containerStyles = {
+      borderColor: disabled ? colors.disabled : '#e2e2e2',
+      borderWidth: 1,
+      backgroundColor: disabled ? colors.secondary : null
+    };
+
+    const inputStyles = {
+      color: disabled ? colors.textLight : colors.textColor,
+      paddingHorizontal: 10
+    };
+    if (multiline === false) {
+      inputStyles.height = 36;
+    } else {
+      inputStyles.paddingVertical = 10;
     }
 
-    onChangeText(e);
-  };
+    const onChangeTextHandler = e => {
+      if (!onChangeText) {
+        return;
+      }
 
-  return (
-    <View style={containerStyles}>
-      <TextInput
-        value={value}
-        onChangeText={onChangeTextHandler}
-        textAlignVertical={multiline ? 'top' : 'center'}
-        numberOfLines={lines}
-        style={inputStyles}
-        multiline={multiline}
-        defaultValue={defaultValue}
-        placeholder={placeholder}
-        editable={!disabled}
-        selectTextOnFocus={!disabled}
-        placeholderTextColor={colors.textLight}
-      />
-    </View>
-  );
-};
+      onChangeText(e);
+    };
+
+    return (
+      <View style={containerStyles}>
+        <TextInput
+          ref={input => (this.input = input)}
+          value={value}
+          onChangeText={onChangeTextHandler}
+          textAlignVertical={multiline ? 'top' : 'center'}
+          numberOfLines={lines}
+          style={inputStyles}
+          multiline={multiline}
+          defaultValue={defaultValue}
+          placeholder={placeholder}
+          editable={!disabled}
+          selectTextOnFocus={!disabled}
+          placeholderTextColor={colors.textLight}
+          {...otherProps}
+        />
+      </View>
+    );
+  }
+}
 
 export const TextBoxSamples = () => {
   return (

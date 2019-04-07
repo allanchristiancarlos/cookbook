@@ -4,7 +4,7 @@ import formatRating from '../Functions/formatRating';
 
 export const RecipeDetailHeader = props => {
   const { data } = props;
-  const { name, rating, imageUrl, difficulty, prepTime } = data;
+  const { name, rating, imageUrl, difficulty, cookTime } = data;
 
   const meta = [
     {
@@ -16,7 +16,7 @@ export const RecipeDetailHeader = props => {
       value: difficulty || 'N/A'
     },
     {
-      value: prepTime || 'N/A',
+      value: cookTime || 'N/A',
       label: 'Cook Time'
     }
   ];

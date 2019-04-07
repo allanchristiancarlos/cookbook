@@ -49,7 +49,7 @@ class MyRecipeCard extends Component {
           </View>
           <View style={{ flex: 1 }}>
             <View style={{ marginBottom: 10, maxHeight: 35 }}>
-              <Text bold>{name}</Text>
+              <Text bold size="large">{name}</Text>
             </View>
             <View>{renderRating()}</View>
           </View>

@@ -5,7 +5,7 @@ import { View } from 'react-native';
 const { colors } = Theme;
 
 export const Section = props => {
-  const { children, title, action, onAction } = props;
+  const { children, title, action, onAction, required } = props;
 
   const onActionHandler = () => {
     if (!onAction) {
@@ -13,13 +13,27 @@ export const Section = props => {
     }
 
     onAction();
-  }
+  };
+
+  const renderRequired = () => {
+    if (!required) {
+      return;
+    }
+
+    return (
+      <View style={{ marginLeft: 2 }}>
+        <Text danger size="small" bold>
+          *
+        </Text>
+      </View>
+    );
+  };
 
   const renderAction = () => {
     if (!action) {
       return;
     }
-    
+
     return (
       <View
         style={{
@@ -56,9 +70,12 @@ export const Section = props => {
             justifyContent: 'center'
           }}
         >
-          <Text bold size="large">
-            {title}
-          </Text>
+          <View style={{ marginBottom: 10, flexDirection: 'row' }}>
+            <Text bold size="large">
+              {title}
+            </Text>
+            {renderRequired()}
+          </View>
         </View>
         {renderAction()}
       </View>
