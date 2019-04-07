@@ -33,13 +33,22 @@ class RecipesFlatList extends React.PureComponent {
     }));
     this._loadFirstPageAsync().then(({ data, links }) => {
       const { next } = links || {};
-      this.setState(state => ({
-        ...state,
-        data: data.map(t => normalizeRecipe(t)),
-        nextDataUrl: next,
-        allLoaded: !next,
-        refreshing: false
-      }));
+      this.setState(
+        state => ({
+          ...state,
+          data: data.map(t => normalizeRecipe(t)),
+          nextDataUrl: next,
+          allLoaded: !next,
+          refreshing: false
+        }),
+        () => {
+          setTimeout(() => {
+            this.flatList.scrollToOffset({
+              offset: 0
+            });
+          });
+        }
+      );
     });
   };
 
@@ -131,6 +140,10 @@ class RecipesFlatList extends React.PureComponent {
     });
   }
 
+  refresh() {
+    this._handleRefresh();
+  }
+
   clear() {
     this.setState(() => ({
       data: [],
@@ -147,6 +160,7 @@ class RecipesFlatList extends React.PureComponent {
       loading: true
     }));
     this._loadFirstPageAsync().then(({ data, links }) => {
+      const { onLoadInitial } = this.props;
       const { next } = links || {};
       this.setState(state => ({
         ...state,
@@ -155,6 +169,9 @@ class RecipesFlatList extends React.PureComponent {
         allLoaded: !next,
         loading: false
       }));
+      if (onLoadInitial) {
+        onLoadInitial();
+      }
     });
   }
 
@@ -164,6 +181,7 @@ class RecipesFlatList extends React.PureComponent {
 
     return (
       <FlatList
+        ref={ref => (this.flatList = ref)}
         contentContainerStyle={{ flexGrow: 1 }}
         data={data}
         keyExtractor={this._keyExtractor}

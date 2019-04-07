@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { View, TextInput } from 'react-native';
-import { Http, Theme } from '../../../Core';
-import normalizeRecipe from '../../Recipes/Functions/normalizeRecipe';
-import RecipesList from '../../Recipes/Components/RecipesList';
+import { Theme } from '../../../Core';
+import Layout from '../../../Components/Layout';
+import RecipesFlatList from '../../Recipes/Components/RecipesFlatList';
+import { RecipeCard } from '../../Recipes/Components/RecipeCard';
 import HeaderIconButton from '../../../Components/HeaderIconButton';
 
 class Search extends Component {
@@ -49,26 +50,38 @@ class Search extends Component {
       )
     };
   };
+
   constructor(props) {
     super(props);
 
     this.state = {
-      data: [],
-      keyword: ''
+      keyword: '',
+      url: '',
+      listLoaded: false
     };
-
-    this.recipesListRef = React.createRef();
   }
+
+  onListFirstLoad = () => {
+    this.setState(state => ({
+      ...state,
+      listLoaded: true
+    }));
+  };
 
   onSearch = ({ nativeEvent }) => {
     const { text: keyword } = nativeEvent;
-    Http.get(`recipes?_page=1&_limit=20&q=${keyword}`).then(({data: x}) => {
-      this.setState(state => ({
+    this.setState(
+      state => ({
         ...state,
-        data: x.map(t => normalizeRecipe(t))
-      }));
-      this.recipesListRef.current.scrollToTop();
-    });
+        url: `recipes?q=${keyword}`
+      }),
+      () => {
+        const { listLoaded } = this.state;
+        if (listLoaded) {
+          this.list.refresh();
+        }
+      }
+    );
   };
 
   onClear = () => {
@@ -114,16 +127,32 @@ class Search extends Component {
     });
   }
 
+  _renderItem = ({ item: recipe }) => {
+    return (
+      <RecipeCard
+        data={recipe}
+        onPress={() => this.onViewRecipe(recipe)}
+        onCategoryPress={this.onViewCategory}
+      />
+    );
+  };
+
   render() {
-    const { data } = this.state;
+    const { url } = this.state;
+
+    if (!url) {
+      return !null;
+    }
 
     return (
-      <RecipesList
-        ref={this.recipesListRef}
-        data={data}
-        onShowRecipe={this.onViewRecipe}
-        onShowCategory={this.onViewCategory}
-      />
+      <Layout>
+        <RecipesFlatList
+          onLoadInitial={this.onListFirstLoad}
+          ref={list => (this.list = list)}
+          url={url}
+          renderItem={this._renderItem}
+        />
+      </Layout>
     );
   }
 }
