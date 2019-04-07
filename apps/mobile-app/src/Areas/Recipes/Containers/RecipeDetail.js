@@ -8,7 +8,6 @@ import { List, ListItem } from '../../../Components/List';
 import { RecipeDetailHeader } from '../Components/RecipeDetailHeader';
 import RecipeComment from '../Components/RecipeComment';
 import { Text, Theme, Http, Button } from '../../../Core';
-import { of, forkJoin } from 'rxjs';
 
 const { colors } = Theme;
 
@@ -42,7 +41,8 @@ class RecipeDetail extends Component {
     this.state = {
       recipe: {},
       comments: [],
-      isFavorite: false
+      isFavorite: false,
+      favorite: null
     };
   }
 
@@ -104,10 +104,17 @@ class RecipeDetail extends Component {
     } else {
       Http.post(`recipes/${recipe.id}/favorites`, {
         userId: 1
-      }).catch(() => {
-        // revert on error
-        this.setFavorite(!isFavorite);
-      });
+      })
+        .then(x => {
+          this.setState(state => ({
+            ...state,
+            favorite: x
+          }));
+        })
+        .catch(() => {
+          // revert on error
+          this.setFavorite(!isFavorite);
+        });
     }
 
     this.setFavorite(isFavorite);
@@ -153,7 +160,14 @@ class RecipeDetail extends Component {
 
   render() {
     const { recipe, comments } = this.state;
-    const { ingredients, steps, relatedCategories, occasions, rating } = recipe;
+    const {
+      ingredients,
+      steps,
+      relatedCategories,
+      occasions,
+      rating,
+      description
+    } = recipe;
 
     const renderComments = () => {
       const hasComments = comments && comments.length > 0;
@@ -193,10 +207,21 @@ class RecipeDetail extends Component {
         </View>
       );
     };
+
+    const hasCategories = (relatedCategories || []).length > 0;
+    const hasOccasions = (occasions || []).length > 0;
+    const hasInstructions = (steps || []).length > 0;
+    const hasDescription = !!description;
     return (
       <ScrollView>
         <RecipeDetailHeader data={recipe} />
         <View style={{ paddingHorizontal: 20 }}>
+          {hasDescription ? (
+            <Section title="Description">
+              <Text>{description}</Text>
+            </Section>
+          ) : null}
+
           <Section title="Ingredients">
             <List>
               {(ingredients || []).map((x, index) => (
@@ -206,55 +231,53 @@ class RecipeDetail extends Component {
               ))}
             </List>
           </Section>
-          <Section title="Instructions">
-            <List ordered={true}>
-              {(steps || []).map((x, index) => (
-                <ListItem key={index}>
-                  <Text>{x}</Text>
-                </ListItem>
-              ))}
-            </List>
-          </Section>
-          <Section title="Categories">
-            <View
-              style={{ flex: 1, flexWrap: 'wrap', flexDirection: 'row' }}
-            >
-              {(relatedCategories || []).map((category, index) => (
-                <View
-                  key={index}
-                  style={{ marginRight: 6, marginBottom: 6 }}
-                >
-                  <Chip
-                    color={colors.primary}
-                    backgroundColor={colors.secondary}
-                    onPress={() => this.onCategoryPressedHandler(category)}
-                  >
-                    {category}
-                  </Chip>
-                </View>
-              ))}
-            </View>
-          </Section>
-          <Section title="Occasions">
-            <View
-              style={{ flex: 1, flexWrap: 'wrap', flexDirection: 'row' }}
-            >
-              {(occasions || []).map((occasion, index) => (
-                <View
-                  key={index}
-                  style={{ marginRight: 6, marginBottom: 6 }}
-                >
-                  <Chip
-                    color={colors.primary}
-                    backgroundColor={colors.secondary}
-                    onPress={() => this.onOccasionPressedHandler(occasion)}
-                  >
-                    {occasion}
-                  </Chip>
-                </View>
-              ))}
-            </View>
-          </Section>
+          {hasInstructions ? (
+            <Section title="Instructions">
+              <List ordered={true}>
+                {(steps || []).map((x, index) => (
+                  <ListItem key={index}>
+                    <Text>{x}</Text>
+                  </ListItem>
+                ))}
+              </List>
+            </Section>
+          ) : null}
+          {hasCategories ? (
+            <Section title="Categories">
+              <View style={{ flex: 1, flexWrap: 'wrap', flexDirection: 'row' }}>
+                {(relatedCategories || []).map((category, index) => (
+                  <View key={index} style={{ marginRight: 6, marginBottom: 6 }}>
+                    <Chip
+                      color={colors.primary}
+                      backgroundColor={colors.secondary}
+                      onPress={() => this.onCategoryPressedHandler(category)}
+                    >
+                      {category}
+                    </Chip>
+                  </View>
+                ))}
+              </View>
+            </Section>
+          ) : null}
+
+          {hasOccasions ? (
+            <Section title="Occasions">
+              <View style={{ flex: 1, flexWrap: 'wrap', flexDirection: 'row' }}>
+                {(occasions || []).map((occasion, index) => (
+                  <View key={index} style={{ marginRight: 6, marginBottom: 6 }}>
+                    <Chip
+                      color={colors.primary}
+                      backgroundColor={colors.secondary}
+                      onPress={() => this.onOccasionPressedHandler(occasion)}
+                    >
+                      {occasion}
+                    </Chip>
+                  </View>
+                ))}
+              </View>
+            </Section>
+          ) : null}
+
           <Section
             title="Rating"
             onAction={this.onRateRecipeHandler}
