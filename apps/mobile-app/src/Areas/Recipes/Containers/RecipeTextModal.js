@@ -64,6 +64,7 @@ class RecipeTextModal extends Component {
               </Text>
             </View>
             <TextBox
+              autoFocus={true}
               value={result}
               onChangeText={this._handleChangeText}
               {...textBoxProps}
