@@ -1,8 +1,8 @@
 import createRecipesStackNavigator from './createRecipesStackNavigator';
-import MyRecipes from '../Areas/Recipes/Containers/MyRecipes';
-import NewRecipe from '../Areas/Recipes/Containers/NewRecipe';
-import EditRecipe from '../Areas/Recipes/Containers/EditRecipe';
-import RecipeTextModal from '../Areas/Recipes/Containers/RecipeTextModal';
+import MyRecipes from '../Areas/MyRecipes/Containers/MyRecipes';
+import NewRecipe from '../Areas/MyRecipes/Containers/NewRecipe';
+import EditRecipe from '../Areas/MyRecipes/Containers/EditRecipe';
+import RecipeTextModal from '../Areas/MyRecipes/Containers/RecipeTextModal';
 
 const MyRecipesNavigator = createRecipesStackNavigator(
   {
