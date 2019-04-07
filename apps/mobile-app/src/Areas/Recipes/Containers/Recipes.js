@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { FlatList } from 'react-native';
-import { Http } from '../../../Core';
+import { FlatList, View } from 'react-native';
+import { Http, Text } from '../../../Core';
 import Layout from '../../../Components/Layout';
-import RecipesList from '../Components/RecipesList';
+import RecipesFlatList from '../Components/RecipesFlatList';
 import { RecipeCard } from '../Components/RecipeCard';
 import normalizeRecipe from '../Functions/normalizeRecipe';
 
@@ -25,42 +25,22 @@ class Recipes extends Component {
     });
   };
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: []
-    };
-  }
-
-  componentDidMount() {
-    Http.get('recipes?_page=1&_limit=20').then(({data, headers}) => {
-      this.setState(state => ({
-        ...state,
-        data: data.map(t => normalizeRecipe(t))
-      }));
-    });
-  }
-
-  _renderItem = ({ item: recipe, index }) => {
-    return <RecipeCard data={recipe} />;
-  };
-
-  _keyExtractor = item => item.id;
-
-  _next = t => {
-    console.log({ t });
+  _renderItem = ({ item: recipe }) => {
+    return (
+      <RecipeCard
+        data={recipe}
+        onPress={() => this.onViewRecipe(recipe)}
+        onCategoryPress={this.onViewCategory}
+      />
+    );
   };
 
   render() {
-    const { data } = this.state;
-
     return (
       <Layout>
-        <FlatList
-          data={data}
-          keyExtractor={this._keyExtractor}
+        <RecipesFlatList
+          url="recipes"
           renderItem={this._renderItem}
-          onEndReached={this._next}
         />
       </Layout>
     );

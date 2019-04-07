@@ -6,7 +6,7 @@ import Rating from '../../../Components/Rating';
 
 const { colors } = Theme;
 
-export class RecipeCard extends Component {
+export class RecipeCard extends React.PureComponent {
   render() {
     const { data, onPress, onCategoryPress } = this.props;
     const { imageUrl, name, rating, relatedCategories } = data || {};
@@ -49,7 +49,7 @@ export class RecipeCard extends Component {
             <Text bold size="large">
               {name}
             </Text>
-            <View style={{marginBottom: 10}}>
+            <View style={{ marginBottom: 10 }}>
               <Rating readOnly={true} rating={rating} size={20} />
             </View>
             <View
