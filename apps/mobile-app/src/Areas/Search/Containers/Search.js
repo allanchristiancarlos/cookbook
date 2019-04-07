@@ -62,7 +62,7 @@ class Search extends Component {
 
   onSearch = ({ nativeEvent }) => {
     const { text: keyword } = nativeEvent;
-    Http.get(`recipes?_page=1&_limit=20&q=${keyword}`).then(x => {
+    Http.get(`recipes?_page=1&_limit=20&q=${keyword}`).then(({data: x}) => {
       this.setState(state => ({
         ...state,
         data: x.map(t => normalizeRecipe(t))

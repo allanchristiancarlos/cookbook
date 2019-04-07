@@ -36,7 +36,7 @@ class RateRecipe extends Component {
     }));
     Http.patch(`recipes/${id}`, {
       rating: averageRating
-    }).then(x => {
+    }).then(() => {
       this.setState(state => ({
         ...state,
         isLoading: false

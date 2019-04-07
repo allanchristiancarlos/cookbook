@@ -335,7 +335,7 @@ class EditRecipe extends Component {
       ...state,
       isLoading: true
     }));
-    Http.patch(`recipes/${newRecipe.id}`, newRecipe).then(x => {
+    Http.patch(`recipes/${newRecipe.id}`, newRecipe).then(({data: x}) => {
       if (onSavedRecipe) {
         onSavedRecipe(x);
       }

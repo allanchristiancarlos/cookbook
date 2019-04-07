@@ -33,7 +33,7 @@ class RecipesByCategory extends Component {
 
   componentDidMount() {
     const { category } = this.props.navigation.state.params;
-    Http.get(`recipes?_limit=10&relatedCategories_like=${category}`).then(x => {
+    Http.get(`recipes?_limit=10&relatedCategories_like=${category}`).then(({ data: x}) => {
       this.setState(state => ({
         ...state,
         data: x.map(t => normalizeRecipe(t))

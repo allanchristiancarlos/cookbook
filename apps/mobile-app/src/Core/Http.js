@@ -40,8 +40,12 @@ export class Http {
   }
 
   static fetch(url, options) {
-    return fetch(`http://192.168.1.30:3000/${url}`, options).then(x =>
-      x.json()
-    );
+    return fetch(`http://192.168.1.30:3000/${url}`, options).then(async (x) => {
+      const data = await x.json();
+      return {
+        data: data,
+        headers: x.headers
+      };
+    });
   }
 }

@@ -41,7 +41,7 @@ class CategoryDetail extends Component {
       }
     });
 
-    Http.get(`categories/${category.id}/recipes?_limit=10`).then(recipes => {
+    Http.get(`categories/${category.id}/recipes?_limit=10`).then(({ data: recipes}) => {
       this.setState(state => ({
         ...state,
         data: {

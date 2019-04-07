@@ -327,7 +327,7 @@ class NewRecipe extends Component {
       ...state,
       isLoading: true
     }));
-    Http.post(`recipes`, newRecipe).then(x => {
+    Http.post(`recipes`, newRecipe).then(({data: x}) => {
       if (onSavedRecipe) {
         onSavedRecipe(x);
       }

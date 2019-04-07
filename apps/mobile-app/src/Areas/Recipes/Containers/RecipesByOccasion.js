@@ -33,7 +33,7 @@ class RecipesByOccasion extends Component {
 
   componentDidMount() {
     const { occasion } = this.props.navigation.state.params;
-    Http.get(`recipes?_limit=10&occasions_like=${occasion}`).then(x => {
+    Http.get(`recipes?_limit=10&occasions_like=${occasion}`).then(({data: x}) => {
       this.setState(state => ({
         ...state,
         data: x.map(t => normalizeRecipe(t))

@@ -73,7 +73,7 @@ class MyRecipes extends Component {
     this.props.navigation.setParams({
       newRecipe: this.onNewRecipeHandler
     });
-    Http.get('user/1/recipes?_page=1&_limit=20').then(x => {
+    Http.get('user/1/recipes?_page=1&_limit=20').then(({data: x}) => {
       this.setState(state => ({
         ...state,
         data: x.map(t => normalizeRecipe(t))

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { FlatList } from 'react-native';
 import { Http } from '../../../Core';
 import Layout from '../../../Components/Layout';
 import RecipesList from '../Components/RecipesList';
+import { RecipeCard } from '../Components/RecipeCard';
 import normalizeRecipe from '../Functions/normalizeRecipe';
 
 class Recipes extends Component {
@@ -10,7 +12,7 @@ class Recipes extends Component {
       title: 'Recipes'
     };
   };
-  
+
   onViewRecipe = recipe => {
     this.props.navigation.push('RecipeDetail', {
       recipe
@@ -31,23 +33,34 @@ class Recipes extends Component {
   }
 
   componentDidMount() {
-    Http.get('recipes?_page=1&_limit=20').then(x => {
+    Http.get('recipes?_page=1&_limit=20').then(({data, headers}) => {
       this.setState(state => ({
         ...state,
-        data: x.map(t => normalizeRecipe(t))
+        data: data.map(t => normalizeRecipe(t))
       }));
     });
   }
+
+  _renderItem = ({ item: recipe, index }) => {
+    return <RecipeCard data={recipe} />;
+  };
+
+  _keyExtractor = item => item.id;
+
+  _next = t => {
+    console.log({ t });
+  };
 
   render() {
     const { data } = this.state;
 
     return (
       <Layout>
-        <RecipesList
+        <FlatList
           data={data}
-          onShowRecipe={this.onViewRecipe}
-          onShowCategory={this.onViewCategory}
+          keyExtractor={this._keyExtractor}
+          renderItem={this._renderItem}
+          onEndReached={this._next}
         />
       </Layout>
     );

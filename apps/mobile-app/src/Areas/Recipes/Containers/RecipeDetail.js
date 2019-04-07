@@ -59,7 +59,7 @@ class RecipeDetail extends Component {
     this.props.navigation.push('RecipeAddComment', {
       recipe: this.state.recipe,
       onCommentSaved: ({ id }) => {
-        Http.get(`comments/${id}?_expand=user`).then(newComment => {
+        Http.get(`comments/${id}?_expand=user`).then(({ data: newComment}) => {
           this.setState(state => {
             return {
               ...state,
@@ -93,7 +93,7 @@ class RecipeDetail extends Component {
 
     if (shouldDeleteFavorite && favorite) {
       const { id } = favorite;
-      Http.delete(`favorites/${id}`).catch(x => {
+      Http.delete(`favorites/${id}`).catch(() => {
         // revert on error
         this.setFavorite(!isFavorite);
       });
@@ -101,7 +101,7 @@ class RecipeDetail extends Component {
       Http.post(`recipes/${recipe.id}/favorites`, {
         userId: 1
       })
-        .then(x => {
+        .then(({data: x}) => {
           this.setState(state => ({
             ...state,
             favorite: x
@@ -138,14 +138,14 @@ class RecipeDetail extends Component {
       recipe
     }));
 
-    Http.get(`recipes/${recipe.id}/comments?_expand=user`).then(comments => {
+    Http.get(`recipes/${recipe.id}/comments?_expand=user`).then(({data: comments}) => {
       this.setState(() => ({
         comments
       }));
     });
 
     Http.get(`recipes/${recipe.id}/favorites?_limit=1&userId=1`).then(
-      ([favorite]) => {
+      ({ data: [favorite]}) => {
         this.setState(() => ({
           favorite
         }));

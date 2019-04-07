@@ -20,7 +20,7 @@ class RecipeAddComment extends Component {
       comment: this.state.comment,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
-    }).then(x => {
+    }).then(({data: x}) => {
       this.setState(state => ({
         ...state,
         isLoading: false

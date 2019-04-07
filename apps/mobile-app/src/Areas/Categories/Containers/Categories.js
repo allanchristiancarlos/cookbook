@@ -24,7 +24,7 @@ class Categories extends Component {
   };
 
   componentDidMount() {
-    Http.get('categories?_page=1&_limit=50&_sort=name').then(x => {
+    Http.get('categories?_page=1&_limit=50&_sort=name').then(({data: x}) => {
       this.setState(state => ({
         ...state,
         data: x
