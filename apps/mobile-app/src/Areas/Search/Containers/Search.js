@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, TextInput } from 'react-native';
 import { Http, Theme } from '../../../Core';
-import { normalizeRecipe } from '../../Recipes/Utils';
+import normalizeRecipe from '../../Recipes/Functions/normalizeRecipe';
 import RecipesList from '../../Recipes/Components/RecipesList';
 import HeaderIconButton from '../../../Components/HeaderIconButton';
 

@@ -2,11 +2,25 @@ import React, { Component } from 'react';
 import { ScrollView, View } from 'react-native';
 import { Http } from '../../../Core';
 import { CategoryCard } from '../Components/CategoryCard';
-import WithCategoryNavigator from '../Hoc/WithCategoryNavigator';
 
 class Categories extends Component {
-  state = {
-    data: []
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: 'Categories'
+    };
+  };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: []
+    };
+  }
+
+  onViewCategory = category => {
+    this.props.navigation.push('CategoryDetail', {
+      category
+    });
   };
 
   componentDidMount() {
@@ -25,10 +39,7 @@ class Categories extends Component {
       <ScrollView>
         {data.map(x => (
           <View key={x.id} style={{ paddingVertical: 10 }}>
-            <CategoryCard
-              onPress={() => this.props.navigateToCategoryDetail(x)}
-              data={x}
-            />
+            <CategoryCard onPress={() => this.onViewCategory(x)} data={x} />
           </View>
         ))}
       </ScrollView>
@@ -36,4 +47,4 @@ class Categories extends Component {
   }
 }
 
-export default WithCategoryNavigator(Categories);
+export default Categories;

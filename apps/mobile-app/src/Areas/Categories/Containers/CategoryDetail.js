@@ -1,13 +1,34 @@
 import React, { Component } from 'react';
-import { View, ScrollView } from 'react-native';
-import CategoryDetailHeader from '../Components/CategoryDetailHeader';
+import { ScrollView } from 'react-native';
 import { Http } from '../../../Core';
+import CategoryDetailHeader from '../Components/CategoryDetailHeader';
 import RecipesList from '../../../Areas/Recipes/Components/RecipesList';
-import WithCategoryNavigator from '../Hoc/WithCategoryNavigator';
 
 class CategoryDetail extends Component {
-  state = {
-    data: {}
+  static navigationOptions = ({ navigation }) => {
+    const { category } = navigation.state.params;
+    return {
+      title: category.name
+    };
+  };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: {}
+    };
+  }
+
+  onViewRecipe = recipe => {
+    this.props.navigation.push('RecipeDetail', {
+      recipe
+    });
+  };
+
+  onViewCategory = category => {
+    this.props.navigation.push('RecipesByCategory', {
+      category
+    });
   };
 
   componentDidMount() {
@@ -40,12 +61,12 @@ class CategoryDetail extends Component {
         <CategoryDetailHeader data={data} />
         <RecipesList
           data={recipes}
-          onShowRecipe={this.props.navigateToRecipe}
-          onShowCategory={this.props.navigateToCategory}
+          onShowRecipe={this.onViewRecipe}
+          onShowCategory={this.onViewCategory}
         />
       </ScrollView>
     );
   }
 }
 
-export default WithCategoryNavigator(CategoryDetail);
+export default CategoryDetail;

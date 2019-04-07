@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Http, Theme } from '../../../Core';
 import { View, FlatList } from 'react-native';
-import { normalizeRecipe } from '../Utils';
+import normalizeRecipe from '../Functions/normalizeRecipe';
 import MyRecipeCard from '../Components/MyRecipeCard';
 import HeaderIconButton from '../../../Components/HeaderIconButton';
 import Layout from '../../../Components/Layout';

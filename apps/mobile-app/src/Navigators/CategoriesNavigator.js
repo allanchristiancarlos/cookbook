@@ -1,25 +1,10 @@
-import { createStackNavigator } from 'react-navigation';
-import Categories from '../Areas/Categories/Containers/Categories';
+import createRecipesStackNavigator from './createRecipesStackNavigator';
 import CategoryDetail from '../Areas/Categories/Containers/CategoryDetail';
+import Categories from '../Areas/Categories/Containers/Categories';
 
-const CategoriesNavigator = createStackNavigator({
-  CategoriesList: {
-    screen: Categories,
-    navigationOptions: () => {
-      return {
-        title: 'Categories'
-      };
-    }
-  },
-  CategoryDetail: {
-    screen: CategoryDetail,
-    navigationOptions: ({ navigation }) => {
-      const { category } = navigation.state.params;
-      return {
-        title: category.name
-      };
-    }
-  }
+const CategoriesNavigator = createRecipesStackNavigator({
+  Categories,
+  CategoryDetail
 });
 
 export default CategoriesNavigator;

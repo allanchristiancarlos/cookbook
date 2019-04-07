@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Http } from '../../../Core';
 import RecipesList from '../Components/RecipesList';
-import { normalizeRecipe } from '../Utils';
+import normalizeRecipe from '../Functions/normalizeRecipe';
 
 class RecipesByOccasion extends Component {
   static navigationOptions = ({ navigation }) => {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Http } from '../../../Core';
-import { normalizeRecipe } from '../Utils';
+import normalizeRecipe from '../Functions/normalizeRecipe';
 import RecipesList from '../Components/RecipesList';
 
 class RecipesByCategory extends Component {
