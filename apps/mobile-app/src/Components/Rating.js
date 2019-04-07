@@ -72,7 +72,8 @@ class Rating extends Component {
   render() {
     const { props } = this;
     const { size = 28 } = props;
-    let rating = this.state.rating;
+    let rating = parseFloat(this.state.rating || 0);
+
     if (rating > 5) {
       rating = 5;
     }
