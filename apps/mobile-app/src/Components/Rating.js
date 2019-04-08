@@ -35,7 +35,7 @@ function RatingStar(props) {
   );
 }
 
-class Rating extends Component {
+class Rating extends React.PureComponent {
   constructor(props) {
     super(props);
 

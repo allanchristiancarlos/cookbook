@@ -1,6 +1,7 @@
 import React from 'react';
 import { FlatList, View } from 'react-native';
 import { Text, Http } from '../../../Core';
+import ActivityIndicator from '../../../Components/ActivityIndicator';
 import normalizeRecipe from '../Functions/normalizeRecipe';
 
 class RecipesFlatList extends React.PureComponent {
@@ -12,7 +13,8 @@ class RecipesFlatList extends React.PureComponent {
       allLoaded: false,
       loading: false,
       nextPageUrl: null,
-      refreshing: false
+      refreshing: false,
+      paginating: false
     };
   }
 
@@ -91,21 +93,36 @@ class RecipesFlatList extends React.PureComponent {
 
   _keyExtractor = (item, index) => index.toString();
 
-  _recipesEndReached = t => {
+  _recipesEndReached = () => {
     const { allLoaded, nextDataUrl } = this.state;
 
     if (allLoaded) {
       return;
     }
 
+    this.setState(state => ({
+      ...state,
+      paginating: true
+    }));
+
     Http.get(nextDataUrl, { withUrl: false }).then(({ data, links }) => {
       const { next } = links || {};
-      this.setState(state => ({
-        ...state,
-        data: [...state.data, ...data.map(t => normalizeRecipe(t))],
-        nextDataUrl: next,
-        allLoaded: !next
-      }));
+      this.setState(
+        state => ({
+          ...state,
+          data: [...state.data, ...data.map(t => normalizeRecipe(t))],
+          nextDataUrl: next,
+          allLoaded: !next
+        }),
+        () => {
+          setTimeout(() => {
+            this.setState(state => ({
+              ...state,
+              paginating: false
+            }));
+          });
+        }
+      );
     });
   };
 
@@ -175,10 +192,25 @@ class RecipesFlatList extends React.PureComponent {
     });
   }
 
+  _renderFooter() {
+    return (
+      <View
+        style={{
+          flex: 1,
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'center',
+          height: 64
+        }}
+      >
+        <ActivityIndicator size="large" />
+      </View>
+    );
+  }
+
   render() {
     const { renderItem } = this.props;
-    const { data, refreshing } = this.state;
-
+    const { data, refreshing, paginating } = this.state;
     return (
       <FlatList
         ref={ref => (this.flatList = ref)}
@@ -188,11 +220,13 @@ class RecipesFlatList extends React.PureComponent {
         renderItem={renderItem}
         ListEmptyComponent={this._emptyView}
         onEndReached={this._recipesEndReached}
-        initialNumToRender={8}
+        initialNumToRender={5}
         maxToRenderPerBatch={4}
-        onEndReachedThreshold={1.5}
+        onEndReachedThreshold={2}
         onRefresh={this._handleRefresh}
+        ListFooterComponent={paginating ? this._renderFooter : null}
         refreshing={refreshing}
+        removeClippedSubviews={true}
       />
     );
   }
