@@ -6,6 +6,16 @@
 - **Categories** - View all recipe categories
 - **My Recipes** - Section where you can Add, Edit and Delete your own recipes.
 
+### Steps on Running the app.
+1. On your local machine clone the app by running ``git clone https://github.com/allanchristiancarlos/cookbook.git``
+2. Run ``npm install``
+3. Edit ``apps/mobile-app/src/Core/Http.js`` file on line 42 change it with your local IP address.
+4. Run ``npm start``
+5. Download **Expo** on your mobile phone.
+6. Scan the QR code that will appear after you run the ``npm start`` this will both start the api server and the react-native app.
+
+Note: Your machine and phone should be on the same network.
+
 ### Technology Stack
 - React Native - Mobile App
 - JSON Server - Backend for serving JSON data
