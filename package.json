@@ -1,7 +1,8 @@
 {
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "start": "concurrently 'npm run start:mobile-app' 'npm run start:backend'",
+    "start": "npm run start:backend:prod",
+    "start:dev": "concurrently 'npm run start:mobile-app' 'npm run start:backend'",
     "start:web-app": "",
     "start:mobile-app": "expo start",
     "start:mobile-app:ios": "expo start --ios",
