@@ -41,7 +41,7 @@ export class Http {
 
   static fetch(url, options) {
     const { withUrl = true } = options;
-    const fullUrl = withUrl ? `http://192.168.1.30:3000/${url}` : url;
+    const fullUrl = withUrl ? `https://acgc-sample-app.herokuapp.com/${url}` : url;
     return fetch(fullUrl, options).then(async x => {
       const data = await x.json();
       return {
